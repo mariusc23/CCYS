@@ -8,34 +8,18 @@
 
 get_header(); ?>
 
-		<div id="primary" class="image-attachment">
+		<div id="primary" class="sevencol last image-attachment">
 			<div id="content" role="main">
-
+		
 			<?php while ( have_posts() ) : the_post(); ?>
 
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 					<header class="entry-header">
 						<h1 class="entry-title"><?php the_title(); ?></h1>
 
-						<div class="entry-meta">
-							<?php
-								$metadata = wp_get_attachment_metadata();
-								printf( __( 'Published <span class="entry-date"><abbr class="published" title="%1$s">%2$s</abbr></span> at <a href="%3$s" title="Link to full-size image">%4$s &times; %5$s</a> in <a href="%6$s" title="Return to %7$s" rel="gallery">%7$s</a>', 'toolbox' ),
-									esc_attr( get_the_time() ),
-									get_the_date(),
-									wp_get_attachment_url(),
-									$metadata['width'],
-									$metadata['height'],
-									get_permalink( $post->post_parent ),
-									get_the_title( $post->post_parent )
-								);
-							?>
-							<?php edit_post_link( __( 'Edit', 'toolbox' ), '<span class="sep">|</span> <span class="edit-link">', '</span>' ); ?>
-						</div><!-- .entry-meta -->
-
-						<nav id="image-navigation">
-							<span class="previous-image"><?php previous_image_link( false, __( '&larr; Previous' , 'toolbox' ) ); ?></span>
-							<span class="next-image"><?php next_image_link( false, __( 'Next &rarr;' , 'toolbox' ) ); ?></span>
+						<nav id="image-navigation" class="cf row">
+							<div class="image-control previous-image sixcol"><?php previous_image_link( false, __( '&larr; Previous Image' , 'toolbox' ) ); ?></div>
+							<div class="image-control next-image sixcol last"><?php next_image_link( false, __( 'Next Image &rarr;' , 'toolbox' ) ); ?></div>
 						</nav><!-- #image-navigation -->
 					</header><!-- .entry-header -->
 
@@ -86,18 +70,6 @@ get_header(); ?>
 
 					</div><!-- .entry-content -->
 
-					<footer class="entry-meta">
-						<?php if ( comments_open() && pings_open() ) : // Comments and trackbacks open ?>
-							<?php printf( __( '<a class="comment-link" href="#respond" title="Post a comment">Post a comment</a> or leave a trackback: <a class="trackback-link" href="%s" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.', 'toolbox' ), get_trackback_url() ); ?>
-						<?php elseif ( ! comments_open() && pings_open() ) : // Only trackbacks open ?>
-							<?php printf( __( 'Comments are closed, but you can leave a trackback: <a class="trackback-link" href="%s" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.', 'toolbox' ), get_trackback_url() ); ?>
-						<?php elseif ( comments_open() && ! pings_open() ) : // Only comments open ?>
-							<?php _e( 'Trackbacks are closed, but you can <a class="comment-link" href="#respond" title="Post a comment">post a comment</a>.', 'toolbox' ); ?>
-						<?php elseif ( ! comments_open() && ! pings_open() ) : // Comments and trackbacks closed ?>
-							<?php _e( 'Both comments and trackbacks are currently closed.', 'toolbox' ); ?>
-						<?php endif; ?>
-						<?php edit_post_link( __( 'Edit', 'toolbox' ), ' <span class="edit-link">', '</span>' ); ?>
-					</footer><!-- .entry-meta -->
 				</article><!-- #post-<?php the_ID(); ?> -->
 
 				<?php comments_template(); ?>

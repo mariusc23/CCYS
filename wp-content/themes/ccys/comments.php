@@ -71,6 +71,10 @@
 		<p class="nocomments"><?php _e( 'Comments are closed.', 'toolbox' ); ?></p>
 	<?php endif; ?>
 
-	<?php comment_form(); ?>
+
+	<?php $comments_args = array(
+		'comment_notes_after' => '',
+		'id_submit' => 'comment-button'); ?>
+	<?php comment_form($comments_args); ?>
 
 </div><!-- #comments -->

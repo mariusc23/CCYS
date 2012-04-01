@@ -20,7 +20,7 @@ class ListWidget extends WP_Widget {
 		$type = empty($instance['type']) ? 'unordered' : $instance['type'] ;
 		
 		for ($i = 1; $i <= 5; $i++) {
-			$items[$i] = $instance['item' . $i];
+			$items[$i] = apply_filters('widget_text', $instance['item' . $i]);
 		}
 
 		echo $before_widget .  $before_title . $title . $after_title;  ?>

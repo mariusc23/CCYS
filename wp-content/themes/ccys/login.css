@@ -1,0 +1,7 @@
+body.login {
+	background: #e8e2c3;
+}
+.login h1 a {
+	background: url('images/logo-red-bkp.png') no-repeat 30px top;
+	height:  142px;
+}

@@ -118,5 +118,5 @@ $required = "<i>*</i>";
 		<div id='em-map' class="em-location-map-content" style='display: none;'></div>
 	</div>
 	<?php endif; ?>
-	<br style="clear:both;" />
+    <br style="clear:both" />
 </div>

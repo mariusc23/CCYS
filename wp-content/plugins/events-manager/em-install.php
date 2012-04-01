@@ -384,10 +384,6 @@ function em_add_options() {
 	#_LOCATIONLINK
 </p>
 {/has_location}
-<p>
-	<strong>Category(ies)</strong>
-	#_CATEGORIES
-</p>
 <br style="clear:both" />
 #_EVENTNOTES
 {has_bookings}

@@ -24,5 +24,4 @@
 		</div>
 		<?php
 	}elseif( is_object($EM_Location) && $EM_Location->location_latitude == 0 && $EM_Location->location_longitude == 0 ){
-		echo '<i>'. __('Map Unavailable', 'dbem') .'</i>';
 	}

@@ -81,9 +81,6 @@ function em_content($page_content) {
 			if( preg_match('/CONTENTS/', $page_content) ){
 				$content = str_replace('CONTENTS',$content,$page_content);
 			}
-			if(get_option('dbem_credits')){
-				$content .= '<p style="color:#999; font-size:11px;">Powered by <a href="http://wp-events-plugin.com" style="color:#999;" target="_blank">Events Manager</a></p>';
-			}
 		}
 		return apply_filters('em_content', '<div id="em-wrapper">'.$content.'</div>');
 	}

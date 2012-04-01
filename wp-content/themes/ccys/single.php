@@ -7,6 +7,13 @@
  */
 
 get_header(); ?>
+		<?php
+		/* Above Article Sidebar */
+		if ( is_active_sidebar( 'sidebar-3' ) ) : ?>
+		<div id="primary-top" class="sevencol last widget-area" role="complementary">
+			<?php dynamic_sidebar( 'sidebar-3' ); ?>
+		</div><!-- #tertiary .widget-area -->
+		<?php endif; ?>
 
 		<div id="primary" class="sevencol last">
 			<div id="content" role="main">

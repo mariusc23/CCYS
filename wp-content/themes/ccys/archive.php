@@ -13,7 +13,7 @@
 
 get_header(); ?>
 
-		<section id="primary">
+		<section id="primary" class="sevencol last">
 			<div id="content" role="main">
 
 			<?php if ( have_posts() ) : ?>

@@ -23,58 +23,38 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width" />
-<title><?php
-	/*
-	 * Print the <title> tag based on what is being viewed.
-	 */
-	global $page, $paged;
-
-	wp_title( '|', true, 'right' );
-
-	// Add the blog name.
-	bloginfo( 'name' );
-
-	// Add the blog description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		echo " | $site_description";
-
-	// Add a page number if necessary:
-	if ( $paged >= 2 || $page >= 2 )
-		echo ' | ' . sprintf( __( 'Page %s', 'toolbox' ), max( $paged, $page ) );
-
-	?></title>
+<title><?php wp_title(''); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link href='http://fonts.googleapis.com/css?family=Enriqueta:400,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 <link rel="stylesheet/less" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/less/grid.less" />
 <link rel="stylesheet/less" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/less/base.less" />
 <link rel="stylesheet/less" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/less/main.less" />
-<script src="<?php echo get_template_directory_uri(); ?>/js/less-1.2.2.min.js" type="text/javascript"></script>
-<?php if ( is_singular() && get_option( 'thread_comments' ) ) wp_enqueue_script( 'comment-reply' ); ?>
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <!--[if lt IE 9]>
-<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
 <![endif]-->
 
 
 <?php wp_head(); ?>
 <?php if(is_home()) {
-	echo '<script src="' . get_template_directory_uri() . '/js/jquery.easing.1.3.js"></script>';
-	echo '<script src="' . get_template_directory_uri() . '/js/slides.min.jquery.js"></script>';
-};
-?>
-<script>
-	$(function(){
-		$('#slides').slides({
-			preload: true,
-			preloadImage: '<?php echo get_template_directory_uri(); ?>/images/loading.gif',
-			play: 3000,
-			pause: 2500,
-			hoverPause: true
+	wp_register_script( 'jquery_easing', get_template_directory_uri() . '/js/jquery.easing.1.3.js', array('jquery'), 1.3, false);
+	wp_enqueue_script( 'jquery_easing' );
+	wp_register_script( 'slides', get_template_directory_uri() . '/js/slides.min.jquery.js', array('jquery'), 1, false);
+	wp_enqueue_script( 'slides' );
+	echo "<script>
+		$(jQuery.fn.gallerySlider = function(){
+			$('#slides').slides({
+				preload: true,
+				preloadImage: '<?php echo get_template_directory_uri(); ?>/images/loading.gif',
+				play: 3000,
+				pause: 2500,
+				hoverPause: true
+			});
 		});
-	});
-</script>
+	</script>";
+	};
+?>
+
 </head>
 
 <body <?php body_class(); ?>>
@@ -96,8 +76,8 @@
 			<?php if(is_home()) { ?>
 			<div id="welcome-notice" class="sixcol">
 				<h1>Coyote Creek Youth Sports</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non urna nulla, ut hendrerit massa. Aenean lobortis orci eget risus ultrices nec pulvinar dolor. Ut rutrum ante in enim tempus sed consequat.</p>
-				<a class="button" href="#" title="Register for division 1 football team">Register Now</a>
+				<p>Is your child 5-15 and wants to participate in tackle football or cheer? Our organization has been developing  athletes since 1990. We play and cheer in Pop Warner Division 1, the highest level of competition in the bay.</p>
+				<a class="button" href="/registration" title="Register for our division 1 football team">Register Now</a>
 				<small id="division-showoff">Division 1 - Peninsula Pop Warner</small>
 			</div>
 			<div id="slides" class="sixcol last">
@@ -116,34 +96,16 @@
 	<div id="main" class="container">
 	<div class="row">
 
-	<?php if ( ! is_dynamic_sidebar( 'sidebar-4' ) ) : ?>
-	<div id="secondary" class="widget-area fivecol" role="complementary">
-		<?php do_action( 'before_sidebar' ); ?>
-		<?php if ( ! dynamic_sidebar( 'sidebar-1' ) ) : ?>
+<?php function secondary_sidebar() {
+	echo '<div id="secondary" class="widget-area fivecol" role="complementary">';
+	do_action( 'before_sidebar' );
+	dynamic_sidebar( 'sidebar-1' );
+	echo '</div><!-- #secondary .widget-area -->';
+	}; ?>
 	
-			<aside id="search" class="widget widget_search">
-				<?php get_search_form(); ?>
-			</aside>
-	
-			<aside id="archives" class="widget">
-				<h1 class="widget-title"><?php _e( 'Archives', 'toolbox' ); ?></h1>
-				<ul>
-					<?php wp_get_archives( array( 'type' => 'monthly' ) ); ?>
-				</ul>
-			</aside>
-	
-			<aside id="meta" class="widget">
-				<h1 class="widget-title"><?php _e( 'Meta', 'toolbox' ); ?></h1>
-				<ul>
-					<?php wp_register(); ?>
-					<aside><?php wp_loginout(); ?></aside>
-					<?php wp_meta(); ?>
-				</ul>
-			</aside>
-	
-		<?php endif; // end sidebar widget area ?>
-	</div><!-- #secondary .widget-area -->
-	<? endif; ?>
+	<?php if ( ! is_page_template( 'page-teams.php' )) {
+		secondary_sidebar();
+	}; ?>
 	
 	<?php if ( is_active_sidebar( 'sidebar-4' ) ) : ?>
 	<div id="tertiary" class="fivecol widget-area" role="complementary">
@@ -175,4 +137,52 @@
 		<?php dynamic_sidebar( 'sidebar-9' ); ?>
 	</div><!-- #tertiary .widget-area -->
 	<?php endif; ?>
+	<?php 
+	/* Team Page Sidebars */
+	if ( is_active_sidebar( 'sidebar-12' ) ) : ?>
+	<div id="tertiary" class="fivecol widget-area" role="complementary">
+		<?php dynamic_sidebar( 'sidebar-12' ); ?>
+	</div><!-- #tertiary .widget-area -->
+	<?php endif; ?>
+	<?php if ( is_active_sidebar( 'sidebar-13' ) ) : ?>
+	<div id="tertiary" class="fivecol widget-area" role="complementary">
+		<?php dynamic_sidebar( 'sidebar-13' ); ?>
+	</div><!-- #tertiary .widget-area -->
+	<?php endif; ?>
+	<?php 
+	
+	/* Cheer sidebar ---------------------------------- */
+	
+	if ( is_active_sidebar( 'sidebar-14' ) ) : ?>
+	<div id="tertiary" class="fivecol widget-area" role="complementary">
+		<?php dynamic_sidebar( 'sidebar-14' ); ?>
+	</div><!-- #tertiary .widget-area -->
+	<?php endif; ?>
+	<?php if ( is_active_sidebar( 'sidebar-15' ) ) : ?>
+	<div id="tertiary" class="fivecol widget-area" role="complementary">
+		<?php dynamic_sidebar( 'sidebar-15' ); ?>
+	</div><!-- #tertiary .widget-area -->
+	<?php endif; ?>
+	<?php if ( is_active_sidebar( 'sidebar-16' ) ) : ?>
+	<div id="tertiary" class="fivecol widget-area" role="complementary">
+		<?php dynamic_sidebar( 'sidebar-16' ); ?>
+	</div><!-- #tertiary .widget-area -->
+	<?php endif; ?>
+	<?php if ( is_active_sidebar( 'sidebar-17' ) ) : ?>
+	<div id="tertiary" class="fivecol widget-area" role="complementary">
+		<?php dynamic_sidebar( 'sidebar-17' ); ?>
+	</div><!-- #tertiary .widget-area -->
+	<?php endif; ?>
+	<?php if ( is_active_sidebar( 'sidebar-18' ) ) : ?>
+	<div id="tertiary" class="fivecol widget-area" role="complementary">
+		<?php dynamic_sidebar( 'sidebar-18' ); ?>
+	</div><!-- #tertiary .widget-area -->
+	<?php endif; ?>
+	<?php if ( is_active_sidebar( 'sidebar-19' ) ) : ?>
+	<div id="tertiary" class="fivecol widget-area" role="complementary">
+		<?php dynamic_sidebar( 'sidebar-19' ); ?>
+	</div><!-- #tertiary .widget-area -->
+	<?php endif; ?>
+
+	
 	

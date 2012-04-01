@@ -117,7 +117,6 @@ function toolbox_widgets_init() {
 		'before_title' => '<h1 class="widget-title">',
 		'after_title' => '</h1>',
 	) );
-
 	register_sidebar( array(
 		'name' => __( 'Above Article', 'toolbox' ),
 		'id' => 'sidebar-3',
@@ -127,10 +126,11 @@ function toolbox_widgets_init() {
 		'before_title' => '<h1 class="widget-title">',
 		'after_title' => '</h1>',
 	) );
+	/* Football Sidebar */
 	register_sidebar( array(
 		'name' => __( 'Tiny Mites Football', 'toolbox' ),
 		'id' => 'sidebar-4',
-		'description' => __( 'Remember to set widget logic to only display on the page. (ex. is_page(42) )', 'toolbox' ),
+		'description' => __( 'Remember to set widget logic to is_page(16)', 'toolbox' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget' => "</section>",
 		'before_title' => '<h1 class="widget-title">',
@@ -139,7 +139,7 @@ function toolbox_widgets_init() {
 	register_sidebar( array(
 		'name' => __( 'Mighty Mites Football', 'toolbox' ),
 		'id' => 'sidebar-5',
-		'description' => __( 'Remember to set widget logic to only display on the page. (ex. is_page(42) )', 'toolbox' ),
+		'description' => __( 'Remember to set widget logic to is_page(10)', 'toolbox' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget' => "</section>",
 		'before_title' => '<h1 class="widget-title">',
@@ -148,7 +148,7 @@ function toolbox_widgets_init() {
 	register_sidebar( array(
 		'name' => __( 'Jr Pee Wee Football', 'toolbox' ),
 		'id' => 'sidebar-6',
-		'description' => __( 'Remember to set widget logic to only display on the page. (ex. is_page(42) )', 'toolbox' ),
+		'description' => __( 'Remember to set widget logic to is_page(12)', 'toolbox' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget' => "</section>",
 		'before_title' => '<h1 class="widget-title">',
@@ -157,7 +157,7 @@ function toolbox_widgets_init() {
 	register_sidebar( array(
 		'name' => __( 'Pee Wee Football', 'toolbox' ),
 		'id' => 'sidebar-7',
-		'description' => __( 'Remember to set widget logic to only display on the page. (ex. is_page(42) )', 'toolbox' ),
+		'description' => __( 'Remember to set widget logic to is_page(14)', 'toolbox' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget' => "</section>",
 		'before_title' => '<h1 class="widget-title">',
@@ -166,7 +166,7 @@ function toolbox_widgets_init() {
 	register_sidebar( array(
 		'name' => __( 'Jr Midget Football', 'toolbox' ),
 		'id' => 'sidebar-8',
-		'description' => __( 'Remember to set widget logic to only display on the page. (ex. is_page(42) )', 'toolbox' ),
+		'description' => __( 'Remember to set widget logic to is_page(157)', 'toolbox' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget' => "</section>",
 		'before_title' => '<h1 class="widget-title">',
@@ -175,16 +175,99 @@ function toolbox_widgets_init() {
 	register_sidebar( array(
 		'name' => __( 'Midget Football', 'toolbox' ),
 		'id' => 'sidebar-9',
-		'description' => __( 'Remember to set widget logic to only display on the page. (ex. is_page(42) )', 'toolbox' ),
+		'description' => __( 'Remember to set widget logic to is_page(18)', 'toolbox' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget' => "</section>",
+		'before_title' => '<h1 class="widget-title">',
+		'after_title' => '</h1>',
+	) );
+	/* Cheer Sidebar */
+	register_sidebar( array(
+		'name' => __( 'Tiny Mites Cheer', 'toolbox' ),
+		'id' => 'sidebar-14',
+		'description' => __( 'Remember to set widget logic to is_page(69)', 'toolbox' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget' => "</section>",
 		'before_title' => '<h1 class="widget-title">',
 		'after_title' => '</h1>',
 	) );
 	register_sidebar( array(
-		'name' => __( 'Above Team', 'toolbox' ),
+		'name' => __( 'Mighty Mites Cheer', 'toolbox' ),
+		'id' => 'sidebar-15',
+		'description' => __( 'Remember to set widget logic to is_page(72)', 'toolbox' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget' => "</section>",
+		'before_title' => '<h1 class="widget-title">',
+		'after_title' => '</h1>',
+	) );
+	register_sidebar( array(
+		'name' => __( 'Jr Pee Wee Cheer', 'toolbox' ),
+		'id' => 'sidebar-16',
+		'description' => __( 'Remember to set widget logic to is_page(74)', 'toolbox' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget' => "</section>",
+		'before_title' => '<h1 class="widget-title">',
+		'after_title' => '</h1>',
+	) );
+	register_sidebar( array(
+		'name' => __( 'Pee Wee Cheer', 'toolbox' ),
+		'id' => 'sidebar-17',
+		'description' => __( 'Remember to set widget logic to is_page(76)', 'toolbox' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget' => "</section>",
+		'before_title' => '<h1 class="widget-title">',
+		'after_title' => '</h1>',
+	) );
+	register_sidebar( array(
+		'name' => __( 'Jr Midget Cheer', 'toolbox' ),
+		'id' => 'sidebar-18',
+		'description' => __( 'Remember to set widget logic to is_page(78)', 'toolbox' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget' => "</section>",
+		'before_title' => '<h1 class="widget-title">',
+		'after_title' => '</h1>',
+	) );
+	register_sidebar( array(
+		'name' => __( 'Midget Cheer', 'toolbox' ),
+		'id' => 'sidebar-19',
+		'description' => __( 'Remember to set widget logic to is_page(80)', 'toolbox' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget' => "</section>",
+		'before_title' => '<h1 class="widget-title">',
+		'after_title' => '</h1>',
+	) );
+	/* Other */
+	register_sidebar( array(
+		'name' => __( 'Above Football', 'toolbox' ),
 		'id' => 'sidebar-10',
-		'description' => __( 'Reg info above team pages. Remember to set widget logic to only display on the page. (ex. is_page(42) )', 'toolbox' ),
+		'description' => __( 'Reg info above team pages. Remember to set widget logic to is_page(6)', 'toolbox' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget' => "</section>",
+		'before_title' => '<h1 class="widget-title">',
+		'after_title' => '</h1>',
+	) );
+	register_sidebar( array(
+		'name' => __( 'Above Cheer', 'toolbox' ),
+		'id' => 'sidebar-11',
+		'description' => __( 'Reg info above team pages. Remember to set widget logic to is_page(67)', 'toolbox' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget' => "</section>",
+		'before_title' => '<h1 class="widget-title">',
+		'after_title' => '</h1>',
+	) );
+	register_sidebar( array(
+		'name' => __( 'Football Page Sidebar', 'toolbox' ),
+		'id' => 'sidebar-12',
+		'description' => __( 'Reg info above team pages. Remember to set widget logic to is_page(6)', 'toolbox' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget' => "</section>",
+		'before_title' => '<h1 class="widget-title">',
+		'after_title' => '</h1>',
+	) );
+	register_sidebar( array(
+		'name' => __( 'Cheer Page Sidebar', 'toolbox' ),
+		'id' => 'sidebar-13',
+		'description' => __( 'Reg info above team pages. Remember to set widget logic to is_page(67)', 'toolbox' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget' => "</section>",
 		'before_title' => '<h1 class="widget-title">',
@@ -377,15 +460,389 @@ function toolbox_enhanced_image_navigation( $url ) {
 }
 add_filter( 'attachment_link', 'toolbox_enhanced_image_navigation' );
 
+// Add Shortcodes
+function scores_shortcode($atts) {
+	extract(shortcode_atts(array(
+	  'home' => 'not',
+	  'o' => 'TBA',
+	  's' => '',
+	), $atts));
+ 
+ 	$is_it_home = '<div class="scores-img-ph"></div>';
+	if ($home != 'not') {
+		$is_it_home = '<img src="/ccys/wp-content/themes/ccys/images/home.png" alt="Home game" />';
+	};
 
+	return '<span class="home">' . $is_it_home . '</span><span class="opponent">' . $o . '</span><span class="score">' . $s . '</span>';
+}
+add_shortcode('sc', 'scores_shortcode');
+
+
+
+// Disable wpautop on certain pages
+function get_rid_of_wpautop(){
+  if(is_page(105)){
+    remove_filter ('the_content', 'wpautop');
+    remove_filter ('the_excerpt', 'wpautop');
+  }
+}
+
+add_action( 'template_redirect', 'get_rid_of_wpautop' );
+
+// Use Custom jQuery URL
 function my_scripts_method() {
     wp_deregister_script( 'jquery' );
     wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js');
     wp_enqueue_script( 'jquery' );
-}    
- 
+    
+    wp_register_script( 
+    	'less',
+    	get_template_directory_uri() . '/js/less-1.2.2.min.js',
+    	array(),
+    	1.22,
+    	false
+    );
+    wp_enqueue_script( 'less' );
+    
+    wp_register_script( 
+    	'html5',
+    	get_template_directory_uri() . '/js/html5.js',
+    	array('modernizr'),
+    	1,
+    	true
+    );
+    wp_enqueue_script( 'html5' );
+
+	wp_register_script( 
+		'ccys',
+		get_template_directory_uri() . '/js/ccys.js',
+		array(),
+		1,
+		true
+	);
+	wp_enqueue_script( 'ccys' );    
+    
+    wp_register_script( 'modernizr', get_template_directory_uri() . '/js/modernizr.custom.20866.js', array('jquery'), 0.1, true);
+    wp_enqueue_script( 'modernizr' );
+}; 
 add_action('wp_enqueue_scripts', 'my_scripts_method');
 
-/**
- * This theme was built with PHP, Semantic HTML, CSS, love, and a Toolbox.
- */
+// Disable Contact Form 7 AJAX
+define ('WPCF7_LOAD_JS', false );
+
+// MailChimp Integration
+function wpcf7_send_to_mailchimp($cfdata) {
+
+$formtitle = $cfdata->title;
+$formdata = $cfdata->posted_data;
+$send_this_email = $formdata['email'];
+$reg_cu_name = '';
+$reg_cu_name = $formdata['cu_child_name'];
+	if ($reg_cu_name == '') {
+		$reg_cu_name = $formdata['ch_first_name'] . ' ' . $formdata['ch_last_name'];
+	};
+$mergeVars = array(
+'PNAME'=>$formdata['con_guardian'],
+'PNUMBER'=>$formdata['con_phone'],
+'CNAME'=>$reg_cu_name,
+'CAGE'=>$formdata['cu_child_age'],
+'CWEIGHT'=>$formdata['cu_child_weight'],
+'MSG'=>$formdata['cu_msg'],
+'GROUPINGS'=>array( array('name'=>'Form Used', 'groups'=>$formtitle),
+));
+
+// MCAPI.class.php needs to be in theme folder
+require_once('MCAPI.class.php');
+
+// grab an API Key from http://admin.mailchimp.com/account/api/
+$api = new MCAPI('c6ee37bdabb9ae8ab1fb36a93e752f3e-us4');
+$api_key = 'c6ee37bdabb9ae8ab1fb36a93e752f3e-us4';
+
+// grab your List's Unique Id by going to http://admin.mailchimp.com/lists/
+// Click the "settings" link for the list - the Unique Id is at the bottom of that page.
+$list_id = "bc67aa5f97";
+
+// Send the form content to MailChimp List without double opt-in
+$retval = $api->listSubscribe($list_id, $send_this_email, $mergeVars, 'html', false);
+	
+	// Debug (uncomment)
+	//if ($api->errorCode){
+	//	echo "Unable to load listSubscribe()!\n";
+	//	echo "\tCode=".$api->errorCode."\n";
+	//	echo "\tMsg=".$api->errorMessage."\n";
+	//} else {
+	//    echo "Subscribed!\n";
+	//}
+
+}
+add_action('wpcf7_mail_sent', 'wpcf7_send_to_mailchimp', 1);
+
+
+// Print PDF after form is submitted
+//add_action( 'wpcf7_mail_sent', 'wpcf7_email_pdf', 8 );
+//
+//function wpcf7_email_pdf($contact_form) {
+//		
+//}
+
+// Attach pdf file
+add_action( 'wpcf7_before_send_mail', 'wpcf7_attach_regform', 9 );
+
+function wpcf7_attach_regform( $contact_form ) {
+	//check if this is the right form
+	if ($contact_form->id==123){
+		$uploads = wp_upload_dir();
+		
+		if ($contact_form->mail['use_html']==true)
+			$nl="<br/>";
+		else
+			$nl="\n";
+	$title = $contact_form->title;
+		$posted_data = $contact_form->posted_data;
+	
+	
+		// Your Child
+		$ch_first_name = $posted_data['ch_first_name'];
+		$ch_last_name = $posted_data['ch_last_name'];
+		$ch_middle_name = $posted_data['ch_middle_name'];
+		$ch_birthday = $posted_data['ch_birthday'];
+		$ch_birthmonth = $posted_data['ch_birthmonth'];
+		$ch_birthyear = $posted_data['ch_birthyear'];
+		$ch_gender = $posted_data['ch_gender'];
+		$ch_sport = $posted_data['ch_sport'];
+		
+		// Your School
+		$s_school = $posted_data['s_school'];
+		$s_grade = $posted_data['s_grade'];
+		$s_gpa = $posted_data['s_gpa'];
+		
+		// Your Contact Info
+		$con_guardian = $posted_data['con_guardian'];
+		$con_relationship = $posted_data['con_relationship'];
+		$con_phone = $posted_data['con_phone'];
+		$email = $posted_data['email'];
+		
+		// Your Address
+		$con_street = $posted_data['con_street'];
+		$con_city = $posted_data['con_city'];
+		$con_state = $posted_data['con_state'];
+		$con_zip = $posted_data['con_zip'];
+		
+		// Emergency Contact Info
+		$er_name = $posted_data['er_name'];
+		$er_relationship = $posted_data['er_relationship'];
+		$er_phone = $posted_data['er_phone'];
+		$er_cellphone = $posted_data['er_cellphone'];
+		
+		/**
+		 * Creates an example PDF TEST document using TCPDF
+		 * @package com.tecnick.tcpdf
+		 * @abstract TCPDF - Example: Default Header and Footer
+		 * @author Nicola Asuni
+		 * @since 2008-03-04
+		 */
+		
+		require_once('tcpdf/config/lang/eng.php');
+		require_once('tcpdf/tcpdf.php');
+		
+		// create new PDF document
+		$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+		
+		// set document information
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('Nicola Asuni');
+		$pdf->SetTitle('TCPDF Example 001');
+		$pdf->SetSubject('TCPDF Tutorial');
+		$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+		
+		// set default header data
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING);
+		
+		// set header and footer fonts
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+		
+		// set default monospaced font
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		
+		//set margins
+		$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+		$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+		$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+		
+		// Disable header and footer
+		$pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
+		
+		//set auto page breaks
+		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+		
+		//set image scale factor
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		
+		//set some language-dependent strings
+		$pdf->setLanguageArray($l);
+		
+		// ---------------------------------------------------------
+		
+		// set default font subsetting mode
+		$pdf->setFontSubsetting(true);
+		
+		// Set font
+		// dejavusans is a UTF-8 Unicode font, if you only need to
+		// print standard ASCII chars, you can use core fonts like
+		// helvetica or times to reduce file size.
+		$pdf->SetFont('times', '', 9.8, '', true);
+		
+		// Add a page
+		// This method has several options, check the source code documentation for more information.
+		$pdf->AddPage();
+		
+		// Define some variables
+		// Gender
+		$gender_male = '';
+		$gender_female = '';
+		
+		if ($ch_gender == 'male') {
+			$gender_male = "X";
+		} elseif ($ch_gender == 'female') {
+			$gender_female = "X";
+		};
+		// Sport
+		$sport_football = "";
+		$sport_cheer = "";
+		$sport_dance = "";
+		
+		if ($ch_sport == "football") {
+			$sport_football = "X";
+		} elseif ($ch_sport == "cheer") {
+			$sport_cheer = "X";
+		} else {
+			$sport_dance = "X";
+		}
+		// Non-required
+		$ch_middle_name = "";
+		$er_cellphone = "";
+		
+		
+		// Set some content to print
+		$html = '
+			<style>
+				.red {
+					color: #ff0000;
+				}
+				.underline {
+					text-decoration: underline;
+				}
+			</style>
+			<h1>Pop Warner Little Scholars, Inc.</h1>
+			<p style="font-weight: bold;">2012 PARTICIPANT CONTRACT AND PARENTAL CONSENT FORM</p>
+			<u>Special Note</u>: <span class="red">This form must be dated after January 1, 2012 and is <u>APPLICABLE ONLY FOR THE 2012 SEASON.</u></span>
+			<p>This form must be submitted to your LOCAL organization prior to the athlete participating in Pop Warner.  No other forms are acceptable.<br />  
+			Every Pop Warner Association must have a fully completed and signed original of this form prior to allowing the athlete to participate.</p>
+		
+			<!-- Begin Form -->
+		
+			<p>Legal Name of Participant (must match birth certificate</p>
+			<p>Last <span class="underline"> &nbsp;&nbsp;&nbsp; ' . $ch_last_name . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp; First <span class="underline"> &nbsp;&nbsp;&nbsp; ' . $ch_first_name . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp; Middle <span class="underline"> &nbsp;&nbsp;&nbsp; ' . $ch_middle_name . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp; Also known as____________________</p>
+		
+			<!-- Address -->
+		
+			<p>Address <span class="underline"> &nbsp;&nbsp;&nbsp; ' . $con_street . ' &nbsp;&nbsp;&nbsp; </span></p>
+			<p>City <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $con_city . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp; 
+			State <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $con_state . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp; 
+			Zip <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $con_city . ' &nbsp;&nbsp;&nbsp; </span></p>
+			
+			<!-- Phone, Birthday, Gender -->
+			
+			<p>Phone No <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $con_phone . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp; 
+			Birthdate <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $ch_birthday . ' ' . $ch_birthmonth . ' ' . $ch_birthyear . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp; 
+			Gender <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $gender_male . ' &nbsp;&nbsp;&nbsp; </span> Male &nbsp;&nbsp;&nbsp; <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $gender_female . ' &nbsp;&nbsp;&nbsp; </span>Female</p>
+			
+			<!-- Sport -->
+			
+			<p>Gender  &nbsp;&nbsp;&nbsp; <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $sport_football . ' &nbsp;&nbsp;&nbsp; </span> Football &nbsp;&nbsp;&nbsp; <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $sport_cheer . ' &nbsp;&nbsp;&nbsp; </span>Cheer &nbsp;&nbsp;&nbsp; <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $sport_dance . ' &nbsp;&nbsp;&nbsp; </span>Dance</p>
+			
+			<!-- School -->
+			
+			<p>School <span class="underline"> &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; ' . $s_school . ' &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; </span>
+			  Grade Level <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $s_grade . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp;</p>
+			<span>Grade Point Average <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $s_gpa . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp; 
+			Alternative Form Participant <span class="underline">  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </span></span><br/>
+			<span>(must meet Scholastic Fitness Requirement of 2.0/70% or else fill out the Scholastic Eligibility Form or Home School Eligibility Form).</span>
+			
+			<!-- Parent Info -->
+			
+			<p>Mailing Address if different from above: _____________________________________________________________________________</p>
+			<p>Name of Parent/Guardian <span class="underline"> &nbsp;&nbsp;&nbsp;' . $con_guardian . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; 
+			  Relationship to Athlete <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $con_relationship . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp;</p>
+			<p>Address (if different from above): __________________________________________________________________________________</p>
+			<p>
+			City_____________________________________________ State _________________ Zip ____________________________________</p>
+			<p>Telephone No <span class="underline"> &nbsp;&nbsp;&nbsp;' . $con_phone . '&nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  
+			  Email Address <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $email . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp;</p>
+		
+			<!-- Emergency Contact -->
+			
+			<span>Emergency Contact Information (if the parent/guardian can not be reached):</span><br />
+			<span>Name<span class="underline"> &nbsp;&nbsp;&nbsp;' . $er_name . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; 
+			  Relationship to Athlete <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $er_relationship . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp;</span><br />
+		    <span>Home Telephone No <span class="underline"> &nbsp;&nbsp;&nbsp;' . $er_phone . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; 
+		      Cell or Work No <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $er_cellphone . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp;</span><br /><br />
+		      
+		    <!-- PPWLS Office Use -->
+		    <table style="border: 1px solid #000;" width="2050" cellspacing="0" cellpadding="0">
+		    <tr>
+		        <td width="6">&nbsp;</td>
+		        <td>&nbsp;</td>
+		        <td width="6">&nbsp;</td>
+		    </tr>
+		    <tr>
+		        <td>&nbsp;</td>
+		        <td><span class="underline"><strong>Pop Warner Official Use Only</strong></span><br />
+		            <span>Registration Number: _______________________ &nbsp;&nbsp;&nbsp; 
+		              Witnessed By: <span class="underline">  &nbsp;&nbsp;&nbsp; ' . $er_relationship . ' &nbsp;&nbsp;&nbsp; </span> &nbsp;&nbsp;&nbsp;</span><br /><br />
+		            <span class="underline">Participant Fees</span><br />
+		            <span>Amount Paid $______________</span>
+		            <p>Type of Transaction: ______ Cash &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;
+		            	______ Check &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; ______ Credit Card &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; ______ Other (please explain)</p>
+		            <p>Proof of age verified?  &nbsp;&nbsp;&nbsp; Yes  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  No</p>
+		            <p>Birth Certificate &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; Other (please explain)</p>
+		            <p>Division of Play (circle one): &nbsp; Flag &nbsp; / &nbsp; Tiny Mite &nbsp; / &nbsp; Mitey Mite &nbsp; / &nbsp; Jr. Pee Wee &nbsp; / &nbsp; Pee Wee &nbsp; / &nbsp; Jr .Midget &nbsp; / &nbsp; Midget &nbsp; / &nbsp; U/L</p>
+		            <p>Weight at Time of Registration  (Football Only): ___________</p>
+		            <p>Proof of Scholastic Fitness verified? &nbsp;&nbsp;&nbsp; Yes &nbsp;&nbsp;&nbsp; No</p>
+		        </td>
+		        <td>&nbsp;</td>
+		    </tr>
+		    <tr>
+		        <td width="6">&nbsp;</td>
+		        <td>&nbsp;</td>
+		        <td width="6">&nbsp;</td>
+		    </tr>
+		    </table>
+		  ';
+		
+		
+		// Print text using writeHTMLCell()
+		$pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
+			
+		// Close and output PDF document
+		// This method has several options, check the source code documentation for more information.
+		$fileatt = $pdf->Output('ccys-registration-form.pdf', 'F');
+		
+		$pdf_filename = "ccys-registration-form.pdf";
+
+		$contact_form->uploaded_files = array ( 'coupon' => 'ccys-registration-form.pdf');
+	}
+};
+// Custom Login Design
+function custom_login() {
+	echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('template_directory') . '/login.css" />';
+};
+add_action('login_head', 'custom_login');
+
+// Change Login Page Logo Link
+function put_my_url(){
+	return get_site_url();
+};
+add_filter('login_headerurl', 'put_my_url');

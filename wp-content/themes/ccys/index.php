@@ -41,6 +41,11 @@ get_header(); ?>
 				<article id="post-0" class="post no-results not-found">
 					<header class="entry-header">
 						<h1 class="entry-title"><?php _e( 'Nothing Found', 'toolbox' ); ?></h1>
+						<?php if(has_post_thumbnail( $post_id )) {
+							echo '<a href="' . get_permalink() . '" title="';
+							printf( esc_attr__( 'Permalink to %s', 'toolbox' ), the_title_attribute( 'echo=0' ) );
+							echo '" rel="bookmark" class="image-wrap entry-thumbnail">' . get_the_post_thumbnail($post_id, "full", $src) . '</a>';
+						}; ?>
 					</header><!-- .entry-header -->
 
 					<div class="entry-content">

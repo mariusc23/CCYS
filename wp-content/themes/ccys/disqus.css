@@ -1,0 +1,114 @@
+#dsq-footer {
+	display: none;
+}
+#disqus_thread h3 {
+	border-bottom: 3px solid #d2cca9;
+	position: relative;
+	padding-bottom: 0.5em;
+	margin-bottom: 1.3em;
+	margin-top: 0.5em;
+}
+#disqus_thread h3:after {
+	border-bottom: 1px solid #c7c19f;
+	bottom: -4px;
+	content: '';
+	display: block;
+	position: absolute;
+	width: 100%;
+}
+#dsq-global-toolbar {
+	display: none;
+}
+#dsq-sort-by {
+	margin-top: 12px;
+}
+.dsq-comment-header {
+	background: none;
+	border: none;
+	border-radius: 0;
+	border-bottom: 3px solid #d8d3b4;
+	margin-bottom: 0.6em;
+	font-size: 1.1875em;
+	max-height: none;
+	padding: 0 0 0.8em 0;
+	line-height: 1;
+}
+.dsq-comment-header a {
+	font-weight: normal;
+}
+#dsq-content .dsq-avatar img {
+	height: 4em;
+	width: 4em;
+}
+.dsq-comment-body {
+	padding-left: 5em;
+}
+#dsq-content .dsq-comment {
+	margin-bottom: 3em;
+	min-height: 4em;
+}
+.dsq-collapse-toggle {
+	top: 6px;
+}
+#dsq-content .dsq-post-tools li.dsq-share-on {
+	padding-top: 0;
+}
+#dsq-content .dsq-show-tools .dsq-post-tools {
+	background: none;
+	border: none;
+	border-radius: 0;
+	bottom: -5.1em;
+	box-shadow: none;
+	height: auto;
+	padding-left: 0;
+	position: absolute;
+	width: 100%;
+}
+.dsq-post-tools .dsq-post-as .dsq-button {
+	background: #999474;
+	border: none;
+	border-bottom-right-radius: 0;
+	box-shadow: none;
+	color: #fff;
+	font-family: inherit;
+	position: relative;
+	text-shadow: none;
+}
+.dsq-post-tools .dsq-post-as .dsq-button:hover,
+.dsq-post-tools .dsq-post-as .dsq-button:active {
+	background: #8A8565;
+}
+.dsq-textarea-background {
+	border-radius: 0;
+}
+.dsq-textarea-wrapper {
+	min-height: 70px;
+}
+.dsq-textarea-reply {
+	margin-bottom: 5.8em;
+	margin-left: 5em;
+}
+.dsq-attach-media, .dsq-share-on {
+	display: none;
+}
+#dsq-content .dsq-more-button {
+	background: #999474;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	color: #fff;
+	font-size: 0.8em;
+	font-weight: normal;
+	line-height: 1.4em;
+	text-shadow: none;
+}
+#dsq-content .dsq-more-button:hover,
+#dsq-content .dsq-more-button:active {
+	background: #8A8565;
+}
+#dsq-account-dropdown {
+	position: absolute;
+	right: 0;
+	top: 0.9em;
+	z-index: 10;
+}

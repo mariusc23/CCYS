@@ -55,7 +55,7 @@ $required = '*';
 		<div id='em-map' style='width: 400px; height: 300px; display: none;'></div>
 	</div>
 	<?php endif; ?>
-	<br style="clear:both; " />
+    <br style="clear:both" />
 	<div id="location_coordinates" style='display: none;'>
 		<input id='location-latitude' name='location_latitude' type='text' value='<?php echo $EM_Location->location_latitude; ?>' size='15' />
 		<input id='location-longitude' name='location_longitude' type='text' value='<?php echo $EM_Location->location_longitude; ?>' size='15' />
