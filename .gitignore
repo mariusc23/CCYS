@@ -1,0 +1,6 @@
+.htaccess
+wp-config.php
+wp-content/uploads/
+wp-admin/
+wp-includes/
+CCYS.esproj
