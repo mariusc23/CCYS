@@ -82,11 +82,11 @@
 			</div>
 			<div id="slides" class="sixcol last">
 				<div class="slides_container">
-					<img src="http://www.ccys.com/wp-content/uploads/2010/02/0010.jpg" />
-					<img src="http://www.ccys.com/wp-content/uploads/2010/02/0042.jpg" />
-					<img src="http://www.ccys.com/wp-content/uploads/2010/02/0082.jpg" />
-					<img src="http://www.ccys.com/wp-content/uploads/2010/02/0098.jpg" />
-					<img src="http://www.ccys.com/wp-content/uploads/2010/02/0001.jpg" />
+					<img src="http://ccys.com/wp-content/uploads/2012/04/slide-01.jpg" />
+					<img src="http://ccys.com/wp-content/uploads/2012/04/0042.jpg" />
+					<img src="http://ccys.com/wp-content/uploads/2012/04/slide-02.jpg" />
+					<img src="http://ccys.com/wp-content/uploads/2012/04/slide-03.jpg" />
+					<img src="http://ccys.com/wp-content/uploads/2012/04/slide-04.jpg" />
 				</div>
 			</div><?php }; ?>
 		</header><!-- #branding -->
