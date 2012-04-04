@@ -76,7 +76,7 @@
 			<?php if(is_home()) { ?>
 			<div id="welcome-notice" class="sixcol">
 				<h1>Coyote Creek Youth Sports</h1>
-				<p>Our organization has been developing  athletes since 1990. We play and cheer in Pop Warner Division 1, the highest level of competition in the bay. Is your son or daughter between 5-15 years? <a href="/contact/" title="Find out more about CCYS and the registration requirements by sending us a message.">Send us a message</a> right now!</p>
+				<p>CCYS Pop Warner is now gearing up for 2012. Register now so that you don't miss out on an exciting 2012 football and cheer season. Space is limited so <a href="/contact/" title="Find out more about CCYS and the registration requirements by sending us a message.">don't miss out</a>!</p>
 				<a class="button" href="/registration" title="Register for our division 1 football team">Register Now</a>
 				<small id="division-showoff">Division 1 - Peninsula Pop Warner</small>
 			</div>
