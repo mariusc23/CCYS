@@ -1,6 +1,8 @@
 .htaccess
 wp-config.php
 wp-content/uploads/
+wp-content/backups/
+wp-content/backup-logs/
 wp-admin/
 wp-includes/
 CCYS.esproj
