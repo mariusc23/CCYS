@@ -38,7 +38,7 @@
 	&nbsp;&nbsp;&nbsp;&nbsp;width="<span class="italic">any positive numeric character, without decimal points</span>"<br />  
 	&nbsp;&nbsp;&nbsp;&nbsp;height="<span class="italic">any positive numeric character, without decimal points</span>"<br />  
 	&nbsp;&nbsp;&nbsp;&nbsp;zoom="<span class="italic">any positive numeric character, without decimal points between zero and 20</span>"<br />  
-	&nbsp;&nbsp;&nbsp;&nbsp;maptype="<span class="italic">ROADMAP <span class="sep">or</span> SATELLITE <span class="sep">or</span> HYBRID <span class="sep">or</span> TERRAIN </span>"<br />  
+	&nbsp;&nbsp;&nbsp;&nbsp;maptype="<span class="italic">ROADMAP <span class="sep">or</span> SATELLITE <span class="sep">or</span> HYBRID <span class="sep">or</span> TERRAIN <span class="sep">or</span> OSM </span>"<br />  
 
 	&nbsp;&nbsp;&nbsp;&nbsp;latitude="<span class="italic">any numeric character, between -90 and 90</span>" <span style="color: red;">(Deprecated. Do not use. Please use the <span class="italic">addmarkerlist</span> property instead)</span><br />  
 	&nbsp;&nbsp;&nbsp;&nbsp;longitude="<span class="italic">any numeric character, between -180 and 180</span>" <span style="color: red;">(Deprecated. Do not use. Please use the <span class="italic">addmarkerlist</span> property instead)</span><br />  
@@ -61,6 +61,9 @@
 	&nbsp;&nbsp;&nbsp;&nbsp;zoomcontrol="<span class="italic">true <span class="sep">or</span> false</span>"<br />  
 	&nbsp;&nbsp;&nbsp;&nbsp;scalecontrol="<span class="italic">true <span class="sep">or</span> false</span>"<br />
 	&nbsp;&nbsp;&nbsp;&nbsp;scrollwheelcontrol="<span class="italic">true <span class="sep">or</span> false</span>"<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;draggable="<span class="italic">true <span class="sep">or</span> false</span>"<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;poweredby="<span class="italic">true <span class="sep">or</span> false</span>" The 'true' displays 'Powered By ...' notice under the generated map<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;tiltfourtyfive="<span class="italic">true <span class="sep">or</span> false</span>"<br />
 	&nbsp;&nbsp;&nbsp;&nbsp;mapalign="<span class="italic">left <span class="sep">or</span> center <span class="sep">or</span> right</span>"<br />  
 	&nbsp;&nbsp;&nbsp;&nbsp;streetviewcontrol="<span class="italic">true <span class="sep">or</span> false</span>"]
 			</p>

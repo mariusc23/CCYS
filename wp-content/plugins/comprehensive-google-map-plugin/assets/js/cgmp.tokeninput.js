@@ -17,8 +17,8 @@ var jQueryCgmp = jQuery.noConflict();
 
 		var CGMPGlobal = {};
 
-		CGMPGlobal.sep = $("object#global-data-placeholder param#sep").attr("value");
-		CGMPGlobal.customMarkersUri = $("object#global-data-placeholder param#customMarkersUri").attr("value");
+		CGMPGlobal.sep = $("object#global-data-placeholder param#sep").val();
+		CGMPGlobal.customMarkersUri = $("object#global-data-placeholder param#customMarkersUri").val();
 
 		
 		var DEFAULT_SETTINGS = {

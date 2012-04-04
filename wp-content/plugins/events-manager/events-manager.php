@@ -25,7 +25,11 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-
+add_filter('site_transient_update_plugins', 'dd_remove_update_nag');
+	function dd_remove_update_nag($value) {
+	unset($value->response[ plugin_basename(__FILE__) ]);
+	return $value;
+}
 
 // Setting constants
 define('EM_VERSION', 5.081); //self expanatory

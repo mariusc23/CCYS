@@ -17,7 +17,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
   
 if ( !function_exists('cgmp_draw_map_placeholder') ):
-		function cgmp_draw_map_placeholder($id, $width, $height, $align, $hint) {
+		function cgmp_draw_map_placeholder($id, $width, $height, $align, $hint, $poweredby) {
+
+				
+				$widthunits = "px";
+				$heightunits = "px";
+
+				$width = strtolower($width);
+				$height = strtolower($height);
+				$directionswidth = $width;
+
+				if (strpos($width, "%") !== false) {
+					$widthunits = "%";
+					$width = substr($width, 0, -1);
+					$directionswidth = $width;
+				}
+
+				if (strpos($width, "px") !== false) {
+					$width = substr($width, 0, -1);
+					$directionswidth = ($width - 10);
+				}
+
+				if (strpos($height, "%") !== false) {
+					$height = substr($height, 0, -1);
+				}
+
+				if (strpos($height, "px") !== false) {
+					$height = substr($height, 0, -1);
+				}
 
 				$toploading = ceil($height / 2) - 50;
 
@@ -25,27 +52,35 @@ if ( !function_exists('cgmp_draw_map_placeholder') ):
 
 				if ($hint == "true") {
 					$tokens_with_values = array();
-					$tokens_with_values['MARKER_DIRECTIONS_HINT_WIDTH_TOKEN'] = $width;
-					$tokens_with_values['LABEL_DIRECTIONS_HINT'] = __('Click on map markers to get directions');
+					$tokens_with_values['MARKER_DIRECTIONS_HINT_WIDTH_TOKEN'] = $width.$widthunits;
+					$tokens_with_values['LABEL_DIRECTIONS_HINT'] = __('Click on map markers to get directions',CGMP_NAME);
 					$map_marker_directions_hint_template = cgmp_render_template_with_values($tokens_with_values, CGMP_HTML_TEMPLATE_MAP_MARKER_DIRECTION_HINT);
+				}
+
+				$map_poweredby_notice_template = "";
+				if ($poweredby == "true") {
+					$tokens_with_values = array();
+					$tokens_with_values['MARKER_DIRECTIONS_HINT_WIDTH_TOKEN'] = $width.$widthunits;
+					$map_poweredby_notice_template = cgmp_render_template_with_values($tokens_with_values, CGMP_HTML_TEMPLATE_MAP_POWEREDBY_NOTICE);
 				}
 
 				$tokens_with_values = array();
 				$tokens_with_values['MAP_PLACEHOLDER_ID_TOKEN'] = $id;
-				$tokens_with_values['MAP_PLACEHOLDER_WIDTH_TOKEN'] = $width;
-				$tokens_with_values['MAP_PLACEHOLDER_HEIGHT_TOKEN'] = $height;
+				$tokens_with_values['MAP_PLACEHOLDER_WIDTH_TOKEN'] = $width.$widthunits;
+				$tokens_with_values['MAP_PLACEHOLDER_HEIGHT_TOKEN'] = $height.$heightunits;
 				$tokens_with_values['LOADING_INDICATOR_TOP_POS_TOKEN'] = $toploading;
 				$tokens_with_values['MAP_ALIGN_TOKEN'] = $align;
 				$tokens_with_values['MARKER_DIRECTIONS_HINT_TOKEN'] = $map_marker_directions_hint_template;
+				$tokens_with_values['MAP_POWEREDBY_NOTICE_TOKEN'] = $map_poweredby_notice_template;
 				$tokens_with_values['IMAGES_DIRECTORY_URI'] = CGMP_PLUGIN_IMAGES;
-				$tokens_with_values['DIRECTIONS_WIDTH_TOKEN'] = ($width - 10);
-				$tokens_with_values['LABEL_GET_DIRECTIONS'] = __('Get Directions');
-				$tokens_with_values['LABEL_PRINT_DIRECTIONS'] = __('Print Directions');
-				$tokens_with_values['LABEL_ADDITIONAL_OPTIONS'] = __('Additional options');
-				$tokens_with_values['LABEL_AVOID_TOLLS'] = __('Avoid tolls');
-				$tokens_with_values['LABEL_AVOID_HIGHWAYS'] = __('Avoid highways');
-				$tokens_with_values['LABEL_KM'] = __('KM');
-				$tokens_with_values['LABEL_MILES'] = __('Miles');
+				$tokens_with_values['DIRECTIONS_WIDTH_TOKEN'] = $directionswidth.$widthunits;
+				$tokens_with_values['LABEL_GET_DIRECTIONS'] = __('Get Directions',CGMP_NAME);
+				$tokens_with_values['LABEL_PRINT_DIRECTIONS'] = __('Print Directions',CGMP_NAME);
+				$tokens_with_values['LABEL_ADDITIONAL_OPTIONS'] = __('Additional options',CGMP_NAME);
+				$tokens_with_values['LABEL_AVOID_TOLLS'] = __('Avoid tolls',CGMP_NAME);
+				$tokens_with_values['LABEL_AVOID_HIGHWAYS'] = __('Avoid highways',CGMP_NAME);
+				$tokens_with_values['LABEL_KM'] = __('KM',CGMP_NAME);
+				$tokens_with_values['LABEL_MILES'] = __('Miles',CGMP_NAME);
 
 				return cgmp_render_template_with_values($tokens_with_values, CGMP_HTML_TEMPLATE_MAP_PLACEHOLDER_AND_DIRECTIONS);
  	}
@@ -92,7 +127,7 @@ if ( !function_exists('cgmp_parse_wiki_style_links') ):
 					$linkName = trim($url_data[1]);
 				}
 
-				$anchor = "<a href='".$href."'>".$linkName."</a>";
+				$anchor = "<a target='_blank' href='".$href."'>".$linkName."</a>";
 				$text = str_replace("[TOKEN]", $anchor, $text);
 			}
 		}
@@ -104,9 +139,10 @@ endif;
 
 if ( !function_exists('cgmp_load_plugin_textdomain') ):
 	function cgmp_load_plugin_textdomain() {
-		load_plugin_textdomain(CGMP_NAME, false, dirname(CGMP_PLUGIN_BOOTSTRAP) . '/languages/');
+		load_plugin_textdomain(CGMP_NAME, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/');
 	}
 endif;
+
 
 
 if ( !function_exists('cgmp_show_message') ):
@@ -123,18 +159,23 @@ endif;
 
 
 if ( !function_exists('cgmp_map_data_injector') ):
-	function cgmp_map_data_injector($map_json) {
-			cgmp_map_data_hook_function( $map_json );
+	function cgmp_map_data_injector($map_json, $id) {
+			cgmp_map_data_hook_function( $map_json, $id );
 	}
 endif;
 
 
 if ( !function_exists('cgmp_map_data_hook_function') ):
-	function cgmp_map_data_hook_function( $map_json ) {
+	function cgmp_map_data_hook_function( $map_json, $id) {
+
+		update_option(CGMP_DB_SETTINGS_SHOULD_BASE_OBJECT_RENDER, "true");
+		update_option(CGMP_DB_SETTINGS_WAS_BASE_OBJECT_RENDERED, "false");
+
 		$naughty_stuff = array("'", "\r\n", "\n", "\r");
 		$map_json = str_replace($naughty_stuff, "", $map_json);
-		//$map_json = htmlentities($map_json, ENT_QUOTES);
-		echo "<object class='map-data-placeholder' style='width: 0px !important; height: 0px !important'><param name='json-string' value='".$map_json."' /></object> ".PHP_EOL;
+		$objectid = 'for-mapid-'.$id;
+		$paramid = 'json-string-'.$objectid;
+	echo "<object id='".$objectid."' name='".$objectid."' class='cgmp-data-placeholder cgmp-json-string-placeholder'><param id='".$paramid."' name='".$paramid."' value='".$map_json."' /></object> ".PHP_EOL;
 	}
 endif;
 
@@ -143,39 +184,29 @@ endif;
 if ( !function_exists('cgmp_set_google_map_language') ):
 	function cgmp_set_google_map_language($user_selected_language)  {
 
+		global $cgmp_global_map_language;
+
 		$db_saved_language = get_option(CGMP_DB_SELECTED_LANGUAGE);
 
 		if (!isset($db_saved_language) || $db_saved_language == '') {
 			if ($user_selected_language != 'default') {
 				update_option(CGMP_DB_SELECTED_LANGUAGE, $user_selected_language);
-				cgmp_deregister_and_enqueue_google_api($user_selected_language);
+				$cgmp_global_map_language = $user_selected_language;
 
 			} else {
 				if (!is_admin()) {
-					wp_enqueue_script('cgmp-google-map-api', CGMP_GOOGLE_API_URL, array('jquery'), false, true);
+					$cgmp_global_map_language = "en";
 				}
 			}
 		} else if (isset($db_saved_language) && $db_saved_language != '') {
 
 			if ($user_selected_language != 'default') {
 				update_option(CGMP_DB_SELECTED_LANGUAGE, $user_selected_language);
-				cgmp_deregister_and_enqueue_google_api($user_selected_language);
+				$cgmp_global_map_language = $user_selected_language;
 
 			} else {
-				cgmp_deregister_and_enqueue_google_api($db_saved_language);
+				$cgmp_global_map_language = $db_saved_language;
 			}
-		}
-	}
-endif;
-
-if ( !function_exists('cgmp_deregister_and_enqueue_google_api') ):
-	function cgmp_deregister_and_enqueue_google_api($lang)  {
-		if (!is_admin()) {
-			$api = CGMP_GOOGLE_API_URL;
-			$api .= "&language=".$lang;
-			wp_deregister_script( 'cgmp-google-map-api' );
-			wp_register_script('cgmp-google-map-api', $api, array('jquery'), false, true);
-			wp_enqueue_script('cgmp-google-map-api');
 		}
 	}
 endif;
@@ -326,10 +357,11 @@ if ( !function_exists('cgmp_create_html_geobubble') ):
 					$trueselected = "checked";
 				}
 
-				$elem = "<input type='radio' class='".$attr['class']."' id='".$attr['id']."-false' role='".$attr['name']."' name='".$attr['name']."' ".$falseselected." value='false' />&nbsp;";
-				$elem .= "<label for='".$attr['id']."-false'>Display Geo address and lat/long in the marker info bubble</label><br />";
+				$elem = "<p class='geo-mashup-marker-options'>When Geo mashup marker clicked, info bubble should contain:</p>";
+				$elem .= "<input type='radio' class='".$attr['class']."' id='".$attr['id']."-false' role='".$attr['name']."' name='".$attr['name']."' ".$falseselected." value='false' />&nbsp;";
+				$elem .= "<label for='".$attr['id']."-false'> - marker location (address or lat/long, whichever was set in the original map)</label><br />";
 				$elem .= "<input type='radio' class='".$attr['class']."' id='".$attr['id']."-true' role='".$attr['name']."' name='".$attr['name']."' ".$trueselected." value='true' />&nbsp;";
-				$elem .= "<label for='".$attr['id']."-true'>Display linked title and excerpt of the original blog post in the marker info bubble</label>";
+				$elem .= "<label for='".$attr['id']."-true'> - linked title to the original post/page and the latter's excerpt</label>";
 				return $elem;
 		}
 endif;
@@ -361,7 +393,7 @@ if ( !function_exists('cgmp_create_html_custom') ):
 								continue;
 							}
 
-							if ($file != "shadow.png") {
+							if (strrpos($file, "shadow") === false) {
 									$attr['class'] = "";
 									$attr['style'] = "";
 									$sel = "";
@@ -429,7 +461,7 @@ if ( !function_exists('cgmp_set_values_for_html_rendering') ):
 		$html_element_select_options['show_hide'] = array("Show" => "true", "Hide" => "false");
 		$html_element_select_options['enable_disable_xor'] = array("Enable" => "false", "Disable" => "true");
 		$html_element_select_options['enable_disable'] = array("Enable" => "true", "Disable" => "false");
-		$html_element_select_options['map_types'] = array("Roadmap"=>"ROADMAP", "Satellite"=>"SATELLITE", "Hybrid"=>"HYBRID", "Terrain" => "TERRAIN");
+		$html_element_select_options['map_types'] = array("Roadmap"=>"roadmap", "Satellite"=>"satellite", "Hybrid"=>"hybrid", "Terrain" => "terrain", "OpenStreet"=>"OSM");
 		$html_element_select_options['animation_types'] = array("Drop"=>"DROP", "Bounce"=>"BOUNCE");
 		$html_element_select_options['map_aligns'] = array("Center"=>"center", "Right"=>"right", "Left" => "left");
 		$html_element_select_options['languages'] = array("Default" => "default", "Arabic" => "ar", "Basque" => "eu", "Bulgarian" => "bg", "Bengali" => "bn", "Catalan" => "ca", "Czech" => "cs", "Danish" => "da", "English" => "en", "German" => "de", "Greek" => "el", "Spanish" => "es", "Farsi" => "fa", "Finnish" => "fi", "Filipino" => "fil", "French" => "fr", "Galician" => "gl", "Gujarati" => "gu", "Hindi" => "hi", "Croatian" => "hr", "Hungarian" => "hu", "Indonesian" => "id", "Italian" => "it", "Hebrew" => "iw", "Japanese" => "ja", "Kannada" => "kn", "Korean" => "ko", "Lithuanian" => "lt", "Latvian" => "lv", "Malayalam" => "ml", "Marathi" => "mr", "Dutch" => "nl", "Norwegian" => "no", "Oriya" => "or", "Polish" => "pl", "Portuguese" => "pt", "Romanian" => "ro", "Russian" => "ru", "Slovak" => "sk", "Slovenian" => "sl", "Serbian" => "sr", "Swedish" => "sv", "Tagalog" => "tl", "Tamil" => "ta", "Telugu" => "te", "Thai" => "th", "Turkish" => "tr", "Ukrainian" => "uk", "Vietnamese" => "vi", "Chinese (simpl)" => "zh-CN", "Chinese (tradi)" => "zh-TW");
@@ -485,28 +517,6 @@ endif;
 
 
 
-
-if ( !function_exists('cgmp_invalidate_published_post_marker') ):
-		function cgmp_invalidate_published_post_marker($postID)  {
-
-			$db_markers = get_option(CGMP_DB_PUBLISHED_POST_MARKERS);
-
-			if (!isset($db_markers) || $db_markers == '') {
-				$db_markers = array();
-			} else if ($db_markers != '') {
-				$db_markers = unserialize(base64_decode($db_markers));
-			}
-
-			if (is_array($db_markers) && count($db_markers) > 0) {
-				if (isset($db_markers[$postID])) {
-					update_option(CGMP_DB_POST_COUNT, -1);
-				}
-			}
-		}
-endif;
-
-
-
 if ( !function_exists('cgmp_cleanup_markers_from_published_posts') ):
 
 		function cgmp_cleanup_markers_from_published_posts()  {
@@ -522,9 +532,9 @@ if ( !function_exists('cgmp_plugin_row_meta') ):
 		if ($file == $plugin) {
 
 			$links = array_merge( $links,
-				array( sprintf( '<a href="admin.php?page=cgmp-documentation">%s</a>', __('Documentation') ) ),
-				array( sprintf( '<a href="admin.php?page=cgmp-shortcodebuilder">%s</a>', __('Shortcode Builder') ) ),
-				array( sprintf( '<a href="admin.php?page=cgmp-settings">%s</a>', __('Settings') ) ),
+				array( sprintf( '<a href="admin.php?page=cgmp-documentation">%s</a>', __('Documentation',CGMP_NAME) ) ),
+				array( sprintf( '<a href="admin.php?page=cgmp-shortcodebuilder">%s</a>', __('Shortcode Builder',CGMP_NAME) ) ),
+				array( sprintf( '<a href="admin.php?page=cgmp-settings">%s</a>', __('Settings',CGMP_NAME) ) ),
 				array( '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CWNZ5P4Z8RTQ8" target="_blank">' . __('Donate') . '</a>' )
 			);
 		}
@@ -534,114 +544,234 @@ if ( !function_exists('cgmp_plugin_row_meta') ):
 endif;
 
 
+if ( !function_exists('cgmp_publish_post_hook') ):
+		function cgmp_publish_post_hook($postID)  {
 
-if ( !function_exists('cgmp_extract_markers_from_published_posts') ):
-
-		function cgmp_extract_markers_from_published_posts()  {
-
-			$serial = get_option(CGMP_DB_PUBLISHED_POST_MARKERS);
-			$db_markers = '';
-			if ($serial != '') {
-				$db_markers = unserialize(base64_decode($serial));
+			$post = get_post($postID);
+			if (isset($post)) {
+				cgmp_invalidate_saved_shortcode_content_id('post', $post, CGMP_DB_PUBLISHED_POST_IDS);
 			}
-			$first_time_run = false;
-			$invalidation_needed = false;
+		}
+endif;
 
-			if (!isset($db_markers) || $db_markers == '') {
-				$first_time_run = true;
-				//echo "Running marker location extraction for the first time<br />";
-			} else if (is_array($db_markers) && count($db_markers) > 0) {
-				$total_post_count = get_option(CGMP_DB_POST_COUNT);
+if ( !function_exists('cgmp_publish_page_hook') ):
+		function cgmp_publish_page_hook($pageID)  {
 
-				if (isset($total_post_count) && $total_post_count != '') {
-					$count_posts = wp_count_posts();
-					$published_posts = $count_posts->publish;
-
-					if ($total_post_count != $published_posts) {
-						$invalidation_needed = true;
-						//echo "Current total of saved posts is not equal to the actual number of published posts<br />";
-					}
-				} else {
-					$invalidation_needed = true;
-					//echo "Dont have current total of saved posts<br />";
-				}
-
-			} else if (is_array($db_markers) && count($db_markers) == 0) {
-				$invalidation_needed = true;
-				//echo "Array of saved marker locations is empty<br />";
-			} else {
-				//$invalidation_needed = true;
+			$page = get_post($pageID);
+			if (isset($page)) {
+				cgmp_invalidate_saved_shortcode_content_id('page', $page, CGMP_DB_PUBLISHED_PAGE_IDS);
 			}
-
-				if ($invalidation_needed || $first_time_run) {
-
-					$db_markers = extract_locations_from_all_posts();
-
-					if (sizeof($db_markers) > 0) {
-						$serial = base64_encode(serialize($db_markers)); 
-						update_option(CGMP_DB_PUBLISHED_POST_MARKERS, $serial);
-						update_option(CGMP_DB_POST_COUNT, count($posts));
-					}
-				} else {
-					//echo "Not extracting for the first time and no invalidation needed, simply outputing existing array<br />";
-				}
-
-				//echo "Marker list: " .print_r($db_markers, true);
-			//exit;
-
-				return $db_markers;
-        	}
+		}
 endif;
 
 
-if ( !function_exists('extract_locations_from_all_posts') ):
-		function extract_locations_from_all_posts()  {
-			$args = array(
-					'numberposts'     => 120,
-	    		    'orderby'         => 'post_date',
-	    			'order'           => 'DESC',
-	   	 		    'post_type'       => 'post',
-					'post_status'     => 'publish' );
 
-				$posts = get_posts( $args );
+if ( !function_exists('cgmp_invalidate_saved_shortcode_content_id') ):
+		function cgmp_invalidate_saved_shortcode_content_id($type, $content, $db_option_key)  {
+
+			$content_ids_with_shortcodes = array();
+			$serial = get_option($db_option_key);
+			if (isset($serial) && trim($serial) != '') {
+				$content_ids_with_shortcodes = unserialize(base64_decode($serial));
+			}
+
+			$is_there_need_to_update_db = false;
+
+			if (sizeof($content_ids_with_shortcodes) == 0)  {
+				$content_ids_with_shortcodes = extract_ids_from_all_containing_shortcode($type);
+				$is_there_need_to_update_db = true;
+			}
+
+			$pattern = "/\[google-map-v3[^\]]*\]/";
+			preg_match_all($pattern, $content->post_content, $matches);
+
+			if (is_array($matches[0]) && count($matches[0]) > 0) {
+				if (!isset($content_ids_with_shortcodes[$content->ID])) {
+					$content_ids_with_shortcodes[$content->ID] = $content->ID;
+					$is_there_need_to_update_db = true;
+				}
+			} else {
+				//Post does not have the shortcode anymore
+				if (isset($content_ids_with_shortcodes[$content->ID])) {
+					unset($content_ids_with_shortcodes[$content->ID]);
+					$is_there_need_to_update_db = true;
+				}
+			}
+
+			if (sizeof($content_ids_with_shortcodes) > 0 && $is_there_need_to_update_db) {
+				$serial = base64_encode(serialize($content_ids_with_shortcodes)); 
+				update_option($db_option_key, $serial);
+			}
+		}
+endif;
+
+
+if ( !function_exists('cgmp_build_query_args') ):
+
+		function cgmp_build_query_args($content_type, $ids = array())  {
+
+			$counter = wp_count_posts($content_type);
+			$published_items = isset($counter->publish) ? $counter->publish : 1;
+
+			$limit = ($content_type == "post" ? "numberposts" : "number");
+			$args = array(
+					'post_type'      => $content_type,
+					$limit           => $published_items,
+					'post_status'    => 'publish' );
+
+			if (sizeof($ids) > 0) {
+				$args['post__in'] = array_keys($ids);
+			}
+			return $args;
+		}
+
+endif;
+
+
+if ( !function_exists('extract_ids_from_all_containing_shortcode') ):
+		function extract_ids_from_all_containing_shortcode($content_type)  {
+			$posts = array();
+
+			$args = cgmp_build_query_args($content_type);
+			$posts = ($content_type == "post" ? get_posts($args) : get_pages($args));
+			$ids = array();
+			$pattern = "/\[google-map-v3[^\]]*\]/";
+			foreach($posts as $post)  {
+				preg_match_all($pattern, $post->post_content, $matches);
+				if (is_array($matches[0]) && count($matches[0]) > 0) {
+					$ids[$post->ID] = $post->ID;
+				}
+			}
+
+			return $ids;
+		}
+endif;
+
+
+if ( !function_exists('cgmp_get_content_from_db_by_type') ):
+
+		function cgmp_get_content_from_db_by_type($content_type, $db_option_key, $do_query = true)  {
+
+			$serial = get_option($db_option_key);
+			$ids = array();
+			if (isset($serial) && trim($serial) != '') {
+				$ids = unserialize(base64_decode($serial));
+			}
+
+			if (sizeof($ids) == 0)  {
+				$ids = extract_ids_from_all_containing_shortcode($content_type);
+				if ($ids > 0) {
+					$serial = base64_encode(serialize($ids)); 
+					update_option($db_option_key, $serial);
+				}
+			}
+
+			if ($do_query) {
+				$args = cgmp_build_query_args($content_type, $ids);
+				return ($content_type == "post" ? get_posts($args) : get_pages($args));
+			}
+		}
+
+endif;
+
+
+if ( !function_exists('cgmp_extract_markers_from_published_content') ):
+
+		function cgmp_extract_markers_from_published_content()  {
+
+			$posts = cgmp_get_content_from_db_by_type("post", CGMP_DB_PUBLISHED_POST_IDS);
+			$pages = cgmp_get_content_from_db_by_type("page", CGMP_DB_PUBLISHED_PAGE_IDS);
+			return array_merge(process_collection_of_contents($posts), process_collection_of_contents($pages));
+        }
+endif;
+
+
+if ( !function_exists('cgmp_on_activate_hook') ):
+
+		function cgmp_on_activate_hook()  {
+
+			update_option(CGMP_DB_SETTINGS_SHOULD_BASE_OBJECT_RENDER, "false");
+			update_option(CGMP_DB_SETTINGS_WAS_BASE_OBJECT_RENDERED, "false");
+
+			update_option(CGMP_DB_PUBLISHED_POST_MARKERS, '');
+			update_option(CGMP_DB_POST_COUNT, '');
+
+			update_option(CGMP_DB_PUBLISHED_POST_IDS, '');
+			update_option(CGMP_DB_PUBLISHED_PAGE_IDS, '');
+
+			cgmp_get_content_from_db_by_type("post", CGMP_DB_PUBLISHED_POST_IDS, false);
+			cgmp_get_content_from_db_by_type("page", CGMP_DB_PUBLISHED_PAGE_IDS, false);
+        }
+endif;
+
+
+if ( !function_exists('cgmp_on_deactivation_hook') ):
+
+		function cgmp_on_deactivation_hook()  {
+
+		}
+endif;
+
+
+if ( !function_exists('cgmp_on_uninstall_hook') ):
+
+		function cgmp_on_uninstall_hook()  {
+
+			if ( CGMP_PLUGIN_BOOTSTRAP != WP_UNINSTALL_PLUGIN ) {
+				return;
+			}
+
+			//legacy
+			remove_option(CGMP_DB_PUBLISHED_POST_MARKERS);
+			remove_option(CGMP_DB_POST_COUNT);
+
+			remove_option(CGMP_DB_PUBLISHED_POST_IDS);
+			remove_option(CGMP_DB_PUBLISHED_PAGE_IDS);
+
+			remove_option(CGMP_DB_SETTINGS_SHOULD_BASE_OBJECT_RENDER);
+			remove_option(CGMP_DB_SETTINGS_WAS_BASE_OBJECT_RENDERED);
+        }
+endif;
+
+
+if ( !function_exists('process_collection_of_contents') ):
+		function process_collection_of_contents($published_content_list)  {
 
 				$db_markers = array();
-				foreach($posts as $post) {
-
-					//echo "Extracted list: " .print_r($post, true)."<br /><br />";
+				foreach($published_content_list as $post) {
 
 					$post_content = $post->post_content;
 					$extracted = extract_locations_from_post_content($post_content);
-					//echo "Extracted list: " .print_r($extracted, true)."<br /><br />";
+
+					$bad_entities = array("&quot;", "&#039;", "'", "\"");
 					if (count($extracted) > 0) {
 							$post_title = $post->post_title;
-							$post_title = str_replace("'", "", $post_title);
-							$post_title = str_replace("\"", "", $post_title);
-							$post_title = preg_replace("/\r\n|\n\r|\n|\r/", "", $post_title);
+							$post_title = strip_tags($post_title);
+							$post_title = str_replace($bad_entities, "", $post_title);
+							$post_title = preg_replace("/\r\n|\n\r|\n/", " ", $post_title);
 							$db_markers[$post->ID]['markers'] = $extracted;
 							$db_markers[$post->ID]['title'] = $post_title;
 							$db_markers[$post->ID]['permalink'] = $post->guid;
 							$db_markers[$post->ID]['excerpt'] = '';
 
 						$clean = "";
-						if (isset($post->post_excerpt) && strlen($post->post_excerpt) > 0) {
+						if (isset($post->post_excerpt) && trim($post->post_excerpt) != '') {
 							$clean = clean_excerpt($post->post_excerpt);
 						} else {
 							$clean = clean_excerpt($post_content);
 						}
-						
-						//Dont consider text that has shortcodes of some sort
-						if ( strlen($clean) > 0 ) {
-							$excerpt = substr($clean, 0, 130);
+						if ( trim($clean) != '' ) {
+							$excerpt = mb_substr($clean, 0, 175);
 							$db_markers[$post->ID]['excerpt'] = $excerpt."..";
 						} 
 					}
 				}
-				//echo "Extracted list: " .print_r(json_decode(json_encode($db_markers)), true)."<br /><br />";
 				return $db_markers;
 
 	}
 endif;
+
+
 
 if ( !function_exists('clean_excerpt') ):
 	function clean_excerpt($content)  {
@@ -649,25 +779,12 @@ if ( !function_exists('clean_excerpt') ):
 		if (!isset($content) || $content == "") {
 			return $content;
 		}
-	
-		$content = preg_replace ('@<[^>]*>@', '', $content);
-		$start = strpos($content, "[");
-
-		if ($start !== false) {
-
-				if ($start > 0) {
-					$content = substr($content, 0, $start - 1);
-					$content = str_replace("'", "", $content);
-					$content = str_replace("\"", "", $content);
-					$content = preg_replace("/\r\n|\n\r|\n|\r/", "", $content);
-				} else {
-					$content = "";
-				}
-		} else {
-			$content = str_replace("'", "", $content);
-			$content = str_replace("\"", "", $content);
-			$content = preg_replace("/\r\n|\n\r|\n|\r/", "", $content);
-		}
+		$bad_entities = array("&quot;", "&#039;", "'", "\"");
+		$content = strip_tags($content);
+		$content = preg_replace ("/<[^>]*>/", "", $content);
+		$content = preg_replace ("/\[[^\]]*\]/", "", $content);
+		$content = preg_replace("/\r\n|\n\r|\n/", " ", $content);
+		$content = str_replace($bad_entities, "", $content);
 		return trim($content);
 	}
 endif;
@@ -677,9 +794,8 @@ if ( !function_exists('extract_locations_from_post_content') ):
 	function extract_locations_from_post_content($post_content)  {
 
 		$arr = array();
-
 		if (isset($post_content) && $post_content != '') {
-				
+
 			if (strpos($post_content, "addresscontent") !== false) {
 				$pattern = "/addresscontent=\"(.*?)\"/";
 				$found = find_for_regex($pattern, $post_content); 
@@ -710,7 +826,7 @@ if ( !function_exists('extract_locations_from_post_content') ):
 						isset($matches[3]) && is_array($matches[3])) {
 
 						for ($idx = 0; $idx < sizeof($matches[1]); $idx++) {
-							
+
 							if (isset($matches[1][$idx]) && isset($matches[3][$idx])) {
 								$lat = $matches[1][$idx];
 								$lng = $matches[3][$idx];
@@ -768,18 +884,12 @@ if ( !function_exists('make_marker_geo_mashup') ):
 
 function make_marker_geo_mashup()   {
 
-	$db_markers = cgmp_extract_markers_from_published_posts();
-
-	//echo "Extracted list: " .print_r($db_markers, true)."<br /><br />";
-	//exit;
+	$db_markers = cgmp_extract_markers_from_published_content();
 
 	if (is_array($db_markers) && count($db_markers) > 0) {
 
 		$filtered = array();
 		foreach($db_markers as $postID => $post_data) {
-
-			//echo "Extracted list: " .print_r($post_data, true)."<br /><br />";
-			//exit;
 
 			$title = $post_data['title'];
 			$permalink = $post_data['permalink'];
@@ -797,11 +907,23 @@ function make_marker_geo_mashup()   {
 					$loc_arr = explode(CGMP_SEP, $full_loc);
 					$tobe_filtered_loc = $loc_arr[0];
 				}
-
+				$tobe_filtered_loc = trim($tobe_filtered_loc);
 				if (!isset($filtered[$tobe_filtered_loc])) {
 					$filtered[$tobe_filtered_loc]['addy'] = $full_loc;
-					$filtered[$tobe_filtered_loc]['title'] = $title;
 					$filtered[$tobe_filtered_loc]['permalink'] = $permalink;
+
+					$bad_entities = array("&quot;", "&#039;", "'", "\"");
+
+					if (isset($title) &&  trim($title) != "")  {
+						$title = str_replace($bad_entities, "", $title);
+						$title = trim($title);
+					}
+					$filtered[$tobe_filtered_loc]['title'] = $title;
+					if (isset($excerpt) &&  trim($excerpt) != "") {
+						$excerpt = str_replace($bad_entities, "", $excerpt);
+						$excerpt = trim($excerpt);
+					}
+
 					$filtered[$tobe_filtered_loc]['excerpt'] = $excerpt;
 				}
 			}

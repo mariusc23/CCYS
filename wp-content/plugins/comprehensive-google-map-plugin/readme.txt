@@ -1,10 +1,10 @@
 === Comprehensive Google Map Plugin ===
 Contributors: alexanderzagniotov
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CWNZ5P4Z8RTQ8
-Tags: google map, google map widget, google map short code, google map short code, map widget, map short code, fusion tables, google fusion tables, google fusion queries, fully documented, marker, controls, size, KML, GPX, GeoRSS, location by latitude/longitude, location by address, info window, directions, traffic/bike lanes, cross browser, google maps v3, google, multiple markers, panoramio photos, marker icons, custom marker icons and text, geo, geo mashup, marker geo mashup, custom marker text
+Tags: google map, google map widget, google map short code, google map short code, map widget, map short code, fusion tables, google fusion tables, google fusion queries, fully documented, marker, controls, size, KML, GPX, GeoRSS, location by latitude/longitude, location by address, info window, directions, traffic/bike lanes, cross browser, google maps v3, google, multiple markers, panoramio photos, marker icons, custom marker icons and text, geo, geo mashup, marker geo mashup, custom marker text, openstreetmap
 Requires at least: 3.2.1
 Tested up to: 3.3.1
-Stable tag: 7.0.9
+Stable tag: 7.0.28
 
 A simple and intuitive,  yet elegant and fully documented Google map plugin that installs as a widget and a short code.
 
@@ -12,8 +12,8 @@ A simple and intuitive,  yet elegant and fully documented Google map plugin that
 
 A simple and intuitive, yet elegant and fully documented Google map plugin that installs as a widget and a short code. No limited plugin editions or limited functionality! This is the full version of this free and premium plugin, which comes packed with useful features: 
 
-* Intuitive and user friendly interface, which makes it very easy to configure Google map. No complex configuration options. Facebook style interactive interface for managing multiple map markers
-* Over 250 amazing custom marker icons to choose from!
+* Intuitive and user friendly interface, which makes it very easy to configure Google map. No complex configuration options. Facebook style interactive interface for managing multiple map markers. OpenStreetMap imagery available
+* Over 250 amazingg custom marker icons to choose from!
 * Aggregate all your post markers in one map - Marker Geo Mashup!
 * Help tooltips enabled, which makes your configuration hassle free
 * Google-like directions - driving and walking, distance shown in miles or KM, avoid tolls and highways options, direction print functionality
@@ -70,9 +70,12 @@ Just click once somewhere on the map
 
 4. The map appears empty with "loading" image or just gray square why is that?
 Please check the following when adding marker locations: 
-[a] In the shortcode builder, did you click the 'Add Marker' button before clicking 'Send to Editor'?
-[b] In the widget, did you click the 'Add Marker' button before clicking 'Save'?
+[a] In the shortcode builder, did you add marker loaction(s) and clicked the 'Add' button before clicking 'Send to Editor'?
+[b] In the widget, did you add marker loaction(s) and clicked the 'Add' button before clicking 'Save'?
 Please revisit and reconfigure your widget or shortcode configuration. The map requires at least one marker location to be added.
+
+5. Where is plugin documentation?<br />
+After plugin activation, look at the left hand side menu of WP admin, look for "Google Map" item
 
 == Screenshots ==
 
@@ -87,6 +90,89 @@ Please revisit and reconfigure your widget or shortcode configuration. The map r
 9. When having marker Geo mashup, you can display in the info bubble marker's original post and post content excerpt instead of normally address and lat/long
 
 == Changelog ==
+
+= 7.0.28 =
+* Spike: Trying to get plugin working with ParallelUS Mingle theme. The latter does some funky stuff with their footer.
+
+= 7.0.27 =
+* Not relying on a global variable anymore when deciding whether to inject plugin scripts, but on DB setting instead
+
+= 7.0.26 =
+* Enhancement: Added Czech (Honza Rameš) translation
+* Bug: When width of map placeholderder is a percentage, the direction section width was 10% smaller
+* Bug: CSS tweak
+
+= 7.0.25 =
+* Enhancement: Width of map placeholderder can now be percentage as well as pixels
+* Enhancement: Added Italian (Nicola Spreafico) and French (Mehdi Lahlou) translations
+* Bug: Marker shadow image was fetched over non-SSL when client is on SSL
+
+= 7.0.24 =
+* Reverted v7.0.23 to version v7.0.22. Errors appeared in Safari on iOS (can't display the page) and IE7 and IE8 (permission denied)
+* Powered by message now is disabled by default
+
+= 7.0.23 =
+* Bug: HTML tags were not stripped from marker location and description when using short code builder
+* Enhancement: Added extra button 'send to editor' above short code builder form
+* Enhancement: Making sure that HTML5 validation does not break
+
+= 7.0.22 =
+* Enhancement: Added SSL detection before loading Google API 
+
+= 7.0.21 =
+* Powered by message is now config option that can be turned on/off 
+
+= 7.0.20 =
+* Powered by message
+
+= 7.0.19 =
+* Bug: Not all markers in geo mashup were displayed. Revisited the whole process of marker extraction
+* Bug: Post excerpt was not displayed sometimes due to nature of PHP substr(). Replaced with mb_substr()
+* Enhancement: Added _blank attributed to links in info bubble
+
+= 7.0.18 =
+* Enhancement: Revisited script loading using wp_print_scripts on demand
+
+= 7.0.17 =
+* Enhancement: Injecting global data placeholder OBJECT on demand
+* Enhancement: Published page maps are now included in geo mashup along side maps from posts
+* Enhancement: Not relying on WP anymore to load jQuery explicitly, but loading dynamically from Google CDN if none was loaded
+
+= 7.0.16 =
+* Enhancement: IE specific CSS on admin side
+* Enhancement: Compatibility with ThemeShock themes on admin side
+* Bug: marker geomushap config value was null instead of false
+* Bug: IE7/8 .attr("value") => .val()
+* Bug: In old saved untouched widgets, new plugin config options were not initialised
+
+= 7.0.15 =
+* Enhancement: Added option to disable map from being draggable
+* Enhancement: Added 45 degree tilt option
+* Enhancement: Added overview map control - a small fold out map in the lower right corner of the main map
+* Enhancement: Google map API now loaded via google.load, which makes plugin compatible with plugins like Better WP Security
+* Enhancement: General CSS face lift in plugin admin and documentation
+
+= 7.0.14 =
+* Bug: Fixed CSS of OBJECT element for Safari and Chrome 
+
+= 7.0.13 =
+* Bug: Fixed CSS of OBJECT element for Safari and Chrome 
+* Enhancement: Cleaned up CSS of plugin config form for Chrome and Safari
+* Enhancement: Extracted info bubble inline CSS into dedicated classes 
+
+= 7.0.12 =
+* Bug: JSON bug fix
+
+= 7.0.11 =
+* Enhancement: Beautified error message dialogs
+* Enhancement: Latitude and longitude can be now separated by semi-column as well as by comma
+* Enhancement: Revisited some JS functions and made them smaller
+* Enhancement: Checking for jQuery version when using parseJSON function
+* Commented on jQuery.noConflict(); as it is actually interfered with some themes poorly written JS
+* Bug: IE7 and IE8 could not display more than one map on the page
+
+= 7.0.10 =
+* Enhancement: Added OpenStreetMap (OSM) as an additional map type. User can select whether to view Google map imagery or OpenStreetMap imagery.
 
 = 7.0.9 =
 * Enhancement: Added marker icons from 0-20 and A-Z

@@ -98,12 +98,22 @@ body {
 	#header-wrap {
 		margin-top: 5em;
 	}
+	#welcome-notice a {
+		color: @bg;
+
+		&:hover {
+			background: @bg;
+			color: @link;
+		}
+		&.button {
+			color: @link;
+		}
+	}
 	#header-bottom {
 		background-position: bottom center;
 		height: 400px;
 	}
-	#branding {
-
+	#access {
 		a {
 			color: @link;
 		}

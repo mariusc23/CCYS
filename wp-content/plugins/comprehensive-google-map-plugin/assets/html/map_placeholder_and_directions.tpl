@@ -1,6 +1,6 @@
-<div align="MAP_ALIGN_TOKEN">MARKER_DIRECTIONS_HINT_TOKEN<div class="google-map-placeholder" id="MAP_PLACEHOLDER_ID_TOKEN" style="width: MAP_PLACEHOLDER_WIDTH_TOKENpx; height: MAP_PLACEHOLDER_HEIGHT_TOKENpx; border:1px solid #333333;"><div class="map-loading" align="center" style="position: relative; top: LOADING_INDICATOR_TOP_POS_TOKENpx !important;"></div></div>
-
-			<div class="direction-controls-placeholder" id="direction-controls-placeholder-MAP_PLACEHOLDER_ID_TOKEN" style="background: white; width: MAP_PLACEHOLDER_WIDTH_TOKENpx; margin-top: 5px; border: 1px solid #EBEBEB; display: none; padding: 18px 0 9px 0;">
+<div align="MAP_ALIGN_TOKEN">MARKER_DIRECTIONS_HINT_TOKEN<div class="google-map-placeholder" id="MAP_PLACEHOLDER_ID_TOKEN" style="width: MAP_PLACEHOLDER_WIDTH_TOKEN; height: MAP_PLACEHOLDER_HEIGHT_TOKEN;"><div align="center" style="background:url('IMAGES_DIRECTORY_URI/loading.gif') no-repeat 0 0 transparent !important; height:100px; width:100px; position: relative; top: LOADING_INDICATOR_TOP_POS_TOKENpx !important;"></div></div>
+			MAP_POWEREDBY_NOTICE_TOKEN
+			<div class="direction-controls-placeholder" id="direction-controls-placeholder-MAP_PLACEHOLDER_ID_TOKEN" style="background: white; width: MAP_PLACEHOLDER_WIDTH_TOKEN; margin-top: 5px; border: 1px solid #EBEBEB; display: none; padding: 18px 0 9px 0;">
 			<div class="d_close-wrapper">
 				<a id="d_close" href="javascript:void(0)"> 
 					<img src="IMAGES_DIRECTORY_URI/transparent.png" class="close"> 
@@ -77,5 +77,5 @@
 				</div>
 			</div>
 		</div>
-		<div id="rendered-directions-placeholder-MAP_PLACEHOLDER_ID_TOKEN" style="display: none; border: 1px solid #ddd; width: DIRECTIONS_WIDTH_TOKENpx; margin-top: 10px; direction: ltr; overflow: auto; height: 180px; padding: 5px;" class="rendered-directions-placeholder"></div>
+		<div id="rendered-directions-placeholder-MAP_PLACEHOLDER_ID_TOKEN" style="display: none; border: 1px solid #ddd; width: DIRECTIONS_WIDTH_TOKEN; margin-top: 10px; direction: ltr; overflow: auto; height: 180px; padding: 5px;" class="rendered-directions-placeholder"></div>
 	</div>

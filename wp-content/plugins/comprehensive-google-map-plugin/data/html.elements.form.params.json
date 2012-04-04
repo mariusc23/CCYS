@@ -3,7 +3,7 @@
     "dbParameterId" : "title",
     "dbParameterName" : "title",
     "htmlLabelValue" : "Title",
-    "inlineCss" : "width: 100% !important;",
+    "inlineCss" : "width: 98% !important;",
     "templateTokenNameSuffix" : "title"
   },
   { "backendFunctionNameSuffix" : "select",
@@ -19,7 +19,7 @@
     "dbParameterId" : "width",
     "dbParameterName" : "width",
     "dbParameterValue" : "350",
-    "htmlLabelValue" : "Width (px)",
+    "htmlLabelValue" : "Width (px OR %)",
     "templateTokenNameSuffix" : "width"
   },
   { "backendFunctionNameSuffix" : "input",
@@ -27,7 +27,7 @@
     "dbParameterId" : "height",
     "dbParameterName" : "height",
     "dbParameterValue" : "350",
-    "htmlLabelValue" : "Height (px)",
+    "htmlLabelValue" : "Height (px ONLY)",
     "templateTokenNameSuffix" : "height"
   },
   { "backendFunctionNameSuffix" : "input",
@@ -104,6 +104,30 @@
     "templateTokenNameSuffix" : "scrollwheelcontrol"
   },
   { "backendFunctionNameSuffix" : "select",
+    "dbParameterId" : "tiltfourtyfive",
+    "dbParameterName" : "tiltfourtyfive",
+    "dbParameterValue" : "false",
+    "htmlLabelValue" : "Tilt 45 &deg;",
+    "htmlSelectOptionsKey" : "enable_disable",
+    "templateTokenNameSuffix" : "tiltfourtyfive"
+  },
+  { "backendFunctionNameSuffix" : "select",
+    "dbParameterId" : "poweredby",
+    "dbParameterName" : "poweredby",
+    "dbParameterValue" : "false",
+    "htmlLabelValue" : "'Powered By'",
+    "htmlSelectOptionsKey" : "enable_disable",
+    "templateTokenNameSuffix" : "poweredby"
+  },
+  { "backendFunctionNameSuffix" : "select",
+    "dbParameterId" : "draggable",
+    "dbParameterName" : "draggable",
+    "dbParameterValue" : "true",
+    "htmlLabelValue" : "Map Draggable",
+    "htmlSelectOptionsKey" : "enable_disable",
+    "templateTokenNameSuffix" : "draggable"
+  },
+  { "backendFunctionNameSuffix" : "select",
     "dbParameterId" : "showbike",
     "dbParameterName" : "showbike",
     "dbParameterValue" : "false",
@@ -123,7 +147,7 @@
     "dbParameterId" : "bubbleautopan",
     "dbParameterName" : "bubbleautopan",
     "dbParameterValue" : "true",
-    "htmlLabelValue" : "Bubble Auto-Pan",
+    "htmlLabelValue" : "Bubble Pan",
     "htmlSelectOptionsKey" : "enable_disable",
     "templateTokenNameSuffix" : "bubbleautopan"
   },
@@ -156,7 +180,7 @@
     "cssClasses" : "marker-text-details marker-input-info-text marker-location-text notshortcodeitem",
     "dbParameterId" : "locationaddmarkerinput",
     "dbParameterName" : "locationaddmarkerinput",
-    "dbParameterValue" : "Enter marker address or latitude,longitude here (required)",
+    "dbParameterValue" : "Enter marker destination address or latitude,longitude here (required)",
     "templateTokenNameSuffix" : "locationaddmarkerinput"
   },
   { "backendFunctionNameSuffix" : "input",

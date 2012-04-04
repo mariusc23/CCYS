@@ -366,6 +366,7 @@ function em_register_new_user( $user_data ) {
  * @param int $user_id User ID
  * @param string $plaintext_pass Optional. The user's plaintext password
  */
+
 function em_new_user_notification($user_id, $plaintext_pass = '') {
 	global $LoginWithAjax;
 

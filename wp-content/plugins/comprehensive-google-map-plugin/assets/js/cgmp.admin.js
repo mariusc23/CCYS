@@ -38,41 +38,60 @@ function displayShortcodeInPopup(container_id) {
 
 function displayPopupWithContent(content, $)  {
 
-		var mask = $('<div id="mask"/>');
-		var shortcode_dialog = $('<div id="shortcode-dialog" class="window" />');
-		shortcode_dialog.html("<p style='padding: 10px 10px 0 10px'>" + content + "</p><div align='center'><input type='button' class='close' value='Close' /></div>");
+		var mask = $('<div id="cgmp-popup-mask"/>');
+		var id = Math.random().toString(36).substring(3);
+		var shortcode_dialog = $('<div id="' + id + '" class="cgmp-popup-shortcode-dialog cgmp-popup-window">');
+		shortcode_dialog.html("<div class='dismiss-container'><a class='dialog-dismiss' href='javascript:void(0)'>×</a></div><p style='padding: 10px 10px 0 10px'>" + content + "</p><div align='center'><input type='button' class='close-dialog' value='Close' /></div>");
 
 		$('body').append(mask);
 		$('body').append(shortcode_dialog);
 
 		var maskHeight = $(document).height();
 		var maskWidth = $(window).width();
-		$('#mask').css({'width':maskWidth,'height':maskHeight, 'opacity':0.1});
-		$('#mask').show();	
-		$('#mask').show();	
+		$('#cgmp-popup-mask').css({'width':maskWidth,'height':maskHeight, 'opacity':0.1});
+
+		if ($("#cgmp-popup-mask").length == 1) {
+			$('#cgmp-popup-mask').show();
+		}
+
 		var winH = $(window).height();
 		var winW = $(window).width();
-		$("div#shortcode-dialog").css('top',  winH/2-$("div#shortcode-dialog").height()/2);
-		$("div#shortcode-dialog").css('left', winW/2-$("div#shortcode-dialog").width()/2);
-		$("div#shortcode-dialog").fadeIn(500); 
-		$('.window .close').click(function (e) {
-			e.preventDefault();
-			$('#mask').remove();
-			$('.window').remove();
+		$("div#" + id).css('top',  winH/2-$("div#" + id).height()/2);
+		$("div#" + id).css('left', winW/2-$("div#" + id).width()/2);
+		$("div#" + id).fadeIn(500); 
+		$('.cgmp-popup-window .close-dialog').click(function (e) {
+			close_dialog(e, $(this));
 		});
-		$('#mask').click(function () {
+		$('.cgmp-popup-window .dialog-dismiss').click(function (e) {
+			 close_dialog(e, $(this));
+		});
+
+		function close_dialog(e, object) {
+			e.preventDefault();
+
+			var parentDialog = $(object).closest("div.cgmp-popup-shortcode-dialog");
+			if (parentDialog) {
+				$(parentDialog).remove();
+			}
+
+			if ($("div.cgmp-popup-shortcode-dialog").length == 0) {
+				$('#cgmp-popup-mask').remove();
+			}
+		}
+
+		$('#cgmp-popup-mask').click(function () {
 			$(this).remove();
-			$('.window').remove();
+			$('.cgmp-popup-window').remove();
 		});
 		$(window).resize(function () {
- 			var box = $('.window');
-        	var maskHeight = $(document).height();
-        	var maskWidth = $(window).width();
-        	$('#mask').css({'width':maskWidth,'height':maskHeight});
-        	var winH = $(window).height();
-        	var winW = $(window).width();
-        	box.css('top',  winH/2 - box.height()/2);
-        	box.css('left', winW/2 - box.width()/2);
+			var box = $('.window');
+			var maskHeight = $(document).height();
+			var maskWidth = $(window).width();
+			$('#cgmp-popup-mask').css({'width':maskWidth,'height':maskHeight});
+			var winH = $(window).height();
+			var winW = $(window).width();
+			box.css('top',  winH/2 - box.height()/2);
+			box.css('left', winW/2 - box.width()/2);
 		});
 }
 
@@ -81,7 +100,7 @@ function buildShortcode(id, $) {
 	$(id + ' .shortcodeitem').each(function() {
 	
 		var role = $(this).attr('role');
-		var val =  $(this).attr('value');
+		var val =  $(this).val();
 
 		if (role == 'addmarkerlisthidden') {
 			val = $('<div />').text(val).html();
@@ -99,7 +118,7 @@ function buildShortcode(id, $) {
 			role = name;
 		}
 	
-		if (typeof role == "undefined" || role == "undefined") {
+		if (role == null || typeof role == "undefined" || role == "undefined") {
 			role = $(this).attr('id');
 		}
 
@@ -123,22 +142,26 @@ function buildShortcode(id, $) {
 
 	var CGMPGlobal = {};
 
-	CGMPGlobal.sep = $("object#global-data-placeholder param#sep").attr("value");
-	CGMPGlobal.customMarkersUri = $("object#global-data-placeholder param#customMarkersUri").attr("value");
-	CGMPGlobal.defaultLocationText = $("object#global-data-placeholder param#defaultLocationText").attr("value");
-	CGMPGlobal.defaultBubbleText = $("object#global-data-placeholder param#defaultBubbleText").attr("value");
+	CGMPGlobal.sep = $("object#global-data-placeholder param#sep").val();
+
+	if (CGMPGlobal.sep == null || CGMPGlobal.sep == "undefined") {
+		CGMPGlobal.sep = "{}";
+	}
+	CGMPGlobal.customMarkersUri = $("object#global-data-placeholder param#customMarkersUri").val();
+	CGMPGlobal.defaultLocationText = $("object#global-data-placeholder param#defaultLocationText").val();
+	CGMPGlobal.defaultBubbleText = $("object#global-data-placeholder param#defaultBubbleText").val();
 
 	var lists = [];
 
 		function initTokenHolders()  {
 
 				lists = [];
-				var parentElements = "div#widgets-right  ul.token-input-list, div#google-map-container-metabox ul.token-input-list";
+				var parentElements = "div.widget-google-map-container ul.token-input-list, div#google-map-container-metabox ul.token-input-list";
 
 				$.map($(parentElements), function(element) {
 					var id = $(element).attr("id");
 
-					if (id != null) {
+					if (id != null && id.indexOf('__i__') == -1) {
 						var hiddenInput = "#" + element.id + "hidden";
 						var csv = $(hiddenInput).val();
 
