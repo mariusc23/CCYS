@@ -2,7 +2,7 @@
 /*
 Plugin Name: Stripe Integration
 Plugin URI: http://uxmedic.com
-Description: Create forms using [stripe amount=n]
+Description: Create forms using [stripe amount=n askchild=true]
 Author: UX Medic
 Author URI: http://uxmedic.com
 Contributors: Pippinsplugins

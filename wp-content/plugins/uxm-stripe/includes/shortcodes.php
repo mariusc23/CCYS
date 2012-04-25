@@ -8,6 +8,7 @@ function pippin_stripe_payment_form($atts, $content = null) {
 	), $atts ) );
 	
 	global $stripe_options;
+	
 
 	if(isset($_GET['payment']) && $_GET['payment'] == 'paid') {
 		echo '<p class="success">' . __('Thank you for your payment.', 'pippin_stripe') . '</p>';
@@ -21,7 +22,7 @@ function pippin_stripe_payment_form($atts, $content = null) {
 					</span>
 				</li>
 				<?php if($askchild != NULL) {
-					$child_label = _e('Child Name', 'pippin_stripe');
+					$child_label = __('Child Name', 'pippin_stripe');
 					echo '<li class="form-row">
 					<label>' . $child_label . '</label>
 					<span class="wpcf7-form-control-wrap">
@@ -53,8 +54,9 @@ function pippin_stripe_payment_form($atts, $content = null) {
 					<input type="radio" name="recurring" value="no" checked="checked"/><span><?php _e('One time payment', 'pippin_stripe'); ?></span>
 					<input type="radio" name="recurring" value="yes"/><span><?php _e('Recurring monthly payment', 'pippin_stripe'); ?></span>
 				</li>
+				<?php }; ?>
+				
 			</ol>
-			<?php } ?>
 			<input type="hidden" name="action" value="stripe"/>
 			<input type="hidden" name="redirect" value="<?php echo get_permalink(); ?>"/>
 			<input type="hidden" name="amount" value="<?php echo base64_encode($amount); ?>"/>
@@ -65,6 +67,16 @@ function pippin_stripe_payment_form($atts, $content = null) {
 		</form>
 		
 		<?php
+		
 	}
 }
-add_shortcode('stripe', 'pippin_stripe_payment_form');
+function stripe_shortcodeize($atts, $content = NULL) {
+	ob_start();
+	pippin_stripe_payment_form($atts);
+	$output_string=ob_get_contents();
+	ob_end_clean();
+	
+	return $output_string;
+}
+add_shortcode('stripe', 'stripe_shortcodeize');
+
