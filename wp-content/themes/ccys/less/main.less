@@ -512,7 +512,7 @@ img.alignright {
 input[type=text],
 input#s {
 	border: 2px solid @border-brown-under;
-	margin: 0.3em 1em 0 0;
+	margin: 0 1em 0 0;
 	padding: 0.4em 0.7em;
 	width: 100%;
 }
@@ -738,7 +738,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 // Widgets
 .widget {
-	.clearfix();
+	.clearfix;
 }
 #secondary + #tertiary {
 	width: 56.75%;
@@ -851,10 +851,7 @@ h1, h2, h3, h4, h5, h6 {
 	height: 1px;
 }
 // Contact Form Styling
-form {
-	color: @light-brown;
-}
-.wpcf7 {
+	.wpcf7 {
 	div.wpcf7-response-output {
 		padding: 0.6em 1.3em;
 		margin: 2em 0;
@@ -926,6 +923,7 @@ form {
 	}
 }
 .wpcf7 {
+	color: @light-brown;
 
 	ol {
 		list-style-type: none;
@@ -957,6 +955,7 @@ form {
 .wpcf7-form-control-wrap {
 	display: block;
 	margin-right: 1.5em;
+	margin-top: 0.3em;
 
 	&.ch_birthmonth, &.ch_birthday {
 		float: left;
