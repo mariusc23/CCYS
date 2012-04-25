@@ -528,6 +528,25 @@ textarea {
 	color: #cc0033;
 }
 
+// Stripe
+input.inline-input {
+	display: inline-block;
+	width: 20%;
+
+	+ span {
+		margin-right: 1em;
+	}
+}
+.stripe-providers {
+	margin-left: 1em;
+}
+#stripe-submit {
+	margin-top: 1em;
+}
+.payment-errors.has-errors {
+	background-color: #f6ced1;
+	border: 2px solid #f3b7bb;
+}
 
 /* =Comments
 -------------------------------------------------------------- */
@@ -683,6 +702,13 @@ h1, h2, h3, h4, h5, h6 {
 	}
 	+ .button { // separate two buttons that are next to each other
 		margin-left: 1em;
+	}
+	&.green { // payment buttons
+		background-color: @btn-green-bg;
+
+		&:hover {
+			background-color: @btn-green-bg-hover;
+		}
 	}
 }
 

@@ -597,7 +597,7 @@ function wpcf7_attach_regform( $contact_form ) {
 			$nl="<br/>";
 		else
 			$nl="\n";
-	$title = $contact_form->title;
+		$title = $contact_form->title;
 		$posted_data = $contact_form->posted_data;
 	
 	
